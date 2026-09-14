@@ -1,0 +1,529 @@
+ II can be output instead of stereo if set to this mode via RwAudioCore (EVENT_SETMODE).
+ and the effect bus is sent to the HwFxReturn as a source.  Source audio obtained from HwFxReturn can then be routed to other RwAudioCore Voices for further software mixing.
+ to drive RwAudioCore. Instead of being able to simply plunk down one or more pitch controls on source and submix voices, to achieve desired effects such as singular control at a submix point and dopp
+ voices that the HwPlayer is using, the RwAudioCore Voice that the HwPlayer is inserted on will be expelled regardless of the ExpelMode setting.
+, and they seem to produce the same results as RwAudioCore on PC. However, it is possible there may be slight differences, since the details of those algortihm implementations are not public.
+// ... Create RwAudioCore voice with UserMusicArbiter
+??0LevelManager@MainLoop@EARS@@QAE@PBD0000@Z
+??0LevelServices@Services@MainLoop@EARS@@QAE@AAV123@@Z
+??0Services@MainLoop@EARS@@QAE@XZ
+?CVCMrw::audio::controller::RwAudioCoreVoiceConnectionManager
+?CreateMainWindow@Windows@EARS@@YAPAUHWND__@@_NW4WindowState@12@HHHH@Z
+?DefineInputTrigger@RemappableControls_DS@EARS@@AAEXIW4PcKeyScancode@controller@core@rw@@000W4MouseTrigger@2@W4ControlRemappable@Framework@2@@Z
+?DetectConfig@?A0x0c7fa248@QualitySettings@EARS@@YA?AW4Config@23@XZ
+?GamePadConfig@0EARS@@YAXXZ
+?Init@Mouse@Windows@EARS@@YAXXZ
+?Open@StartUp@RWS@@YA_NXZ
+?RegisterEntityClasses@EARS@@YAXXZ
+?SetCommonInventoryMappings@ControlSchemes@EARS@@YAXAAVControlRemapper@Framework@2@PAVControlMapping@42@1W4SchemeType@12@@Z
+?SetCommonPlayerControlMappings@ControlSchemes@EARS@@YAXAAVControlRemapper@Framework@2@PAVControlMapping@42@1W4SchemeType@12@_N@Z
+Blaze::Association::GetListForUserRequest
+Blaze::Association::GetListsRequest
+Blaze::Association::ListIdentification
+Blaze::Association::ListInfo
+Blaze::Association::ListMemberId
+Blaze::Association::ListMemberInfo
+Blaze::Association::ListMemberInfoUpdate
+Blaze::Association::ListMembers
+Blaze::Association::Lists
+Blaze::Association::UpdateListMembersRequest
+Blaze::Association::UpdateListMembersResponse
+Blaze::Association::UpdateListWithMembersRequest
+Blaze::Association::UpdateListsRequest
+Blaze::Authentication::AcceptTosRequest
+Blaze::Authentication::AccountInfo
+Blaze::Authentication::CheckAgeReqRequest
+Blaze::Authentication::CheckAgeReqResponse
+Blaze::Authentication::ConsoleAssociateAccountRequest
+Blaze::Authentication::ConsoleCreateAccountRequest
+Blaze::Authentication::ConsoleCreateAccountResponse
+Blaze::Authentication::ConsoleLoginResponse
+Blaze::Authentication::ConsumecodeRequest
+Blaze::Authentication::ConsumecodeResponse
+Blaze::Authentication::CreateAccountParameters
+Blaze::Authentication::CreateAccountResponse
+Blaze::Authentication::CreatePersonaRequest
+Blaze::Authentication::DecrementUseCount
+Blaze::Authentication::DecrementUseCountRequest
+Blaze::Authentication::DeviceLoginGuestRequest
+Blaze::Authentication::Entitlement
+Blaze::Authentication::Entitlements
+Blaze::Authentication::ExpressLoginRequest
+Blaze::Authentication::FieldValidateErrorList
+Blaze::Authentication::FieldValidationError
+Blaze::Authentication::FullLoginResponse
+Blaze::Authentication::GetAuthTokenResponse
+Blaze::Authentication::GetHandoffTokenRequest
+Blaze::Authentication::GetHandoffTokenResponse
+Blaze::Authentication::GetPersonaResponse
+Blaze::Authentication::GetTosInfoRequest
+Blaze::Authentication::GetTosInfoResponse
+Blaze::Authentication::GetUseCountRequest
+Blaze::Authentication::HasEntitlementRequest
+Blaze::Authentication::ListDeviceAccountsRequest
+Blaze::Authentication::ListDeviceAccountsResponse
+Blaze::Authentication::ListEntitlementsRequest
+Blaze::Authentication::ListPersonasResponse
+Blaze::Authentication::LoginPersonaRequest
+Blaze::Authentication::LoginRequest
+Blaze::Authentication::LoginResponse
+Blaze::Authentication::PS3LoginRequest
+Blaze::Authentication::PasswordForgotRequest
+Blaze::Authentication::PersonaDetails
+Blaze::Authentication::PersonaInfo
+Blaze::Authentication::PersonaRequest
+Blaze::Authentication::PostEntitlementRequest
+Blaze::Authentication::SessionInfo
+Blaze::Authentication::SilentLoginRequest
+Blaze::Authentication::StressLoginRequest
+Blaze::Authentication::UpdateAccountRequest
+Blaze::Authentication::UpdateAccountResponse
+Blaze::Authentication::UpdatePersonaRequest
+Blaze::Authentication::UseCount
+Blaze::Authentication::UserDetails
+Blaze::Authentication::UserProfileInfo
+Blaze::Authentication::ValidateSessionKeyRequest
+Blaze::Authentication::XboxLoginRequest
+Blaze::CheckOnlineStatusRequest
+Blaze::ClientInfo
+Blaze::ClientMetrics
+Blaze::EntitiesLookupByIdsRequest
+Blaze::EntitiesLookupByIdsResponse
+Blaze::EntityLookupByIdRequest
+Blaze::EntityLookupByIdResponse
+Blaze::EntityLookupRequest
+Blaze::EntityLookupResponse
+Blaze::EntryCriteriaError
+Blaze::FetchExtendedDataRequest
+Blaze::GameManager::AdvanceGameStateRequest
+Blaze::GameManager::BanPlayerMasterRequest
+Blaze::GameManager::BanPlayerRequest
+Blaze::GameManager::CancelMatchmakingRequest
+Blaze::GameManager::ChangeTeamIdRequest
+Blaze::GameManager::CreateGameRequest
+Blaze::GameManager::CreateGameResponse
+Blaze::GameManager::CreateGameStatus
+Blaze::GameManager::DNFRulePrefs
+Blaze::GameManager::DNFRuleStatus
+Blaze::GameManager::DatalessSetupContext
+Blaze::GameManager::DestroyGameListRequest
+Blaze::GameManager::DestroyGameRequest
+Blaze::GameManager::DestroyGameResponse
+Blaze::GameManager::FindGameStatus
+Blaze::GameManager::GameAttributeCensusData
+Blaze::GameManager::GameBrowserDataList
+Blaze::GameManager::GameBrowserGameData
+Blaze::GameManager::GameBrowserMatchData
+Blaze::GameManager::GameBrowserPlayerData
+Blaze::GameManager::GameBrowserTeamInfo
+Blaze::GameManager::GameManagerCensusData
+Blaze::GameManager::GameSessionUpdatedNotification
+Blaze::GameManager::GameSizeRulePrefs
+Blaze::GameManager::GameSizeRuleStatus
+Blaze::GameManager::GenericRuleConfig
+Blaze::GameManager::GenericRulePrefs
+Blaze::GameManager::GenericRuleStatus
+Blaze::GameManager::GeoLocationRuleCriteria
+Blaze::GameManager::GeoLocationRuleStatus
+Blaze::GameManager::GetFullGameDataRequest
+Blaze::GameManager::GetFullGameDataResponse
+Blaze::GameManager::GetGameDataFromIdRequest
+Blaze::GameManager::GetGameListRequest
+Blaze::GameManager::GetGameListResponse
+Blaze::GameManager::GetMatchmakingConfigResponse
+Blaze::GameManager::GetUserSetGameListSubscriptionRequest
+Blaze::GameManager::HostBalanceRuleStatus
+Blaze::GameManager::HostBalancingRulePrefs
+Blaze::GameManager::HostInfo
+Blaze::GameManager::HostViabilityRulePrefs
+Blaze::GameManager::HostViabilityRuleStatus
+Blaze::GameManager::IndirectJoinGameSetupContext
+Blaze::GameManager::IndirectMatchmakingSetupContext
+Blaze::GameManager::JoinGameByGroupMasterRequest
+Blaze::GameManager::JoinGameByUserListRequest
+Blaze::GameManager::JoinGameRequest
+Blaze::GameManager::JoinGameResponse
+Blaze::GameManager::LeaveGameByGroupMasterRequest
+Blaze::GameManager::ListGameData
+Blaze::GameManager::ListGamesResponse
+Blaze::GameManager::MachineLoadCapacity
+Blaze::GameManager::MatchmakingAsyncStatus
+Blaze::GameManager::MatchmakingCriteriaData
+Blaze::GameManager::MatchmakingCriteriaError
+Blaze::GameManager::MatchmakingCustomAsyncStatus
+Blaze::GameManager::MatchmakingCustomCriteriaData
+Blaze::GameManager::MatchmakingDedicatedServerOverrideRequest
+Blaze::GameManager::MatchmakingSetupContext
+Blaze::GameManager::MigrateHostRequest
+Blaze::GameManager::NotifyAdminListChange
+Blaze::GameManager::NotifyCreateDynamicDedicatedServerGame
+Blaze::GameManager::NotifyGameAttribChange
+Blaze::GameManager::NotifyGameCapacityChange
+Blaze::GameManager::NotifyGameCreated
+Blaze::GameManager::NotifyGameListUpdate
+Blaze::GameManager::NotifyGamePlayerStateChange
+Blaze::GameManager::NotifyGamePlayerTeamChange
+Blaze::GameManager::NotifyGameRemoved
+Blaze::GameManager::NotifyGameReportingIdChange
+Blaze::GameManager::NotifyGameReset
+Blaze::GameManager::NotifyGameSettingsChange
+Blaze::GameManager::NotifyGameSetup
+Blaze::GameManager::NotifyGameStateChange
+Blaze::GameManager::NotifyGameTeamIdChange
+Blaze::GameManager::NotifyHostMigrationFinished
+Blaze::GameManager::NotifyHostMigrationStart
+Blaze::GameManager::NotifyMatchmakingAsyncStatus
+Blaze::GameManager::NotifyMatchmakingFailed
+Blaze::GameManager::NotifyPlatformHostInitialized
+Blaze::GameManager::NotifyPlayerAttribChange
+Blaze::GameManager::NotifyPlayerCustomDataChange
+Blaze::GameManager::NotifyPlayerJoinCompleted
+Blaze::GameManager::NotifyPlayerJoining
+Blaze::GameManager::NotifyPlayerRemoved
+Blaze::GameManager::NotifySelectedAsHost
+Blaze::GameManager::NumOfMatchmakingResponse
+Blaze::GameManager::NumOfPlayerSessionsResponse
+Blaze::GameManager::PingSiteRulePrefs
+Blaze::GameManager::PingSiteRuleStatus
+Blaze::GameManager::PlayerConnectionStatus
+Blaze::GameManager::PredefinedPingSiteRuleConfig
+Blaze::GameManager::PredefinedRuleConfig
+Blaze::GameManager::RankRuleStatus
+Blaze::GameManager::RankedGameRulePrefs
+Blaze::GameManager::RegisterDynamicDedicatedServerCreatorRequest
+Blaze::GameManager::RegisterDynamicDedicatedServerCreatorResponse
+Blaze::GameManager::RemovePlayerMasterRequest
+Blaze::GameManager::RemovePlayerMasterResponse
+Blaze::GameManager::RemovePlayerRequest
+Blaze::GameManager::ReplayGameRequest
+Blaze::GameManager::ReplicatedGameData
+Blaze::GameManager::ReplicatedGamePlayer
+Blaze::GameManager::ResetDedicatedServerSetupContext
+Blaze::GameManager::ReturnDedicatedServerToPoolRequest
+Blaze::GameManager::RosterSizeRulePrefs
+Blaze::GameManager::SetGameAttributesRequest
+Blaze::GameManager::SetGameSettingsRequest
+Blaze::GameManager::SetNetworkQosRequest
+Blaze::GameManager::SetPlayerAttributesRequest
+Blaze::GameManager::SetPlayerCapacityRequest
+Blaze::GameManager::SetPlayerCustomDataRequest
+Blaze::GameManager::SetPlayerTeamRequest
+Blaze::GameManager::SkillRulePrefs
+Blaze::GameManager::SkillRuleStatus
+Blaze::GameManager::StartMatchmakingRequest
+Blaze::GameManager::StartMatchmakingResponse
+Blaze::GameManager::TeamCapacity
+Blaze::GameManager::TeamSizeRequirements
+Blaze::GameManager::TeamSizeRulePrefs
+Blaze::GameManager::TeamSizeRuleStatus
+Blaze::GameManager::TeamSizeStatus
+Blaze::GameManager::UEDRuleCriteria
+Blaze::GameManager::UEDRuleStatus
+Blaze::GameManager::UnregisterDynamicDedicatedServerCreatorRequest
+Blaze::GameManager::UnregisterDynamicDedicatedServerCreatorResponse
+Blaze::GameManager::UpdateAdminListRequest
+Blaze::GameManager::UpdateGameHostMigrationStatusRequest
+Blaze::GameManager::UpdateGameSessionRequest
+Blaze::GameManager::UpdateMeshConnectionRequest
+Blaze::GameReporting::ArsonCTF_Common::GameAttributes
+Blaze::GameReporting::ArsonCTF_Common::PlayerReport
+Blaze::GameReporting::ArsonCTF_Common::Report
+Blaze::GameReporting::ArsonCTF_Custom::GameAttributes
+Blaze::GameReporting::ArsonCTF_Custom::PlayerReport
+Blaze::GameReporting::ArsonCTF_Custom::Report
+Blaze::GameReporting::ArsonCTF_Custom::ResultNotification
+Blaze::GameReporting::ArsonCTF_Derived::PlayerReport
+Blaze::GameReporting::ArsonCTF_EndGame::GameAttributes
+Blaze::GameReporting::ArsonCTF_EndGame::PlayerReport
+Blaze::GameReporting::ArsonCTF_EndGame::Report
+Blaze::GameReporting::ArsonCTF_GSA_Common::GameAttributes
+Blaze::GameReporting::ArsonCTF_GSA_Common::PlayerReport
+Blaze::GameReporting::ArsonCTF_GSA_Common::Report
+Blaze::GameReporting::ArsonCTF_GSA_Derived::PlayerReport
+Blaze::GameReporting::ArsonCTF_GSA_NonDerived::GameAttributes
+Blaze::GameReporting::ArsonCTF_GSA_NonDerived::PlayerReport
+Blaze::GameReporting::ArsonCTF_GSA_NonDerived::Report
+Blaze::GameReporting::ArsonCTF_KS_Common::GameAttributes
+Blaze::GameReporting::ArsonCTF_KS_Common::PlayerReport
+Blaze::GameReporting::ArsonCTF_KS_Common::Report
+Blaze::GameReporting::ArsonCTF_KS_Derived::PlayerReport
+Blaze::GameReporting::ArsonCTF_KS_NonDerived::GameAttributes
+Blaze::GameReporting::ArsonCTF_KS_NonDerived::PlayerReport
+Blaze::GameReporting::ArsonCTF_KS_NonDerived::Report
+Blaze::GameReporting::ArsonCTF_MidGame::GameAttributes
+Blaze::GameReporting::ArsonCTF_MidGame::PlayerReport
+Blaze::GameReporting::ArsonCTF_MidGame::Report
+Blaze::GameReporting::ArsonCTF_NonDerived::GameAttributes
+Blaze::GameReporting::ArsonCTF_NonDerived::PlayerReport
+Blaze::GameReporting::ArsonCTF_NonDerived::Report
+Blaze::GameReporting::ArsonClub::ClubReport
+Blaze::GameReporting::ArsonClub::PlayerReport
+Blaze::GameReporting::ArsonClub::Report
+Blaze::GameReporting::ArsonClubGameKeyscopes_NonDerived::ClubReport
+Blaze::GameReporting::ArsonClubGameKeyscopes_NonDerived::OffensiveAthlete
+Blaze::GameReporting::ArsonClubGameKeyscopes_NonDerived::PlayerReport
+Blaze::GameReporting::ArsonClubGameKeyscopes_NonDerived::Report
+Blaze::GameReporting::ArsonLeague::AthleteReport
+Blaze::GameReporting::ArsonLeague::DefensiveStats
+Blaze::GameReporting::ArsonLeague::GameAttributes
+Blaze::GameReporting::ArsonLeague::OffensiveStats
+Blaze::GameReporting::ArsonLeague::PlayerReport
+Blaze::GameReporting::ArsonLeague::Report
+Blaze::GameReporting::ArsonLeagueGameKeyscopes::DefensiveAthlete
+Blaze::GameReporting::ArsonLeagueGameKeyscopes::GameAttributes
+Blaze::GameReporting::ArsonLeagueGameKeyscopes::OffensiveAthlete
+Blaze::GameReporting::ArsonLeagueGameKeyscopes::PlayerReport
+Blaze::GameReporting::ArsonLeagueGameKeyscopes::Report
+Blaze::GameReporting::ArsonMultiKeyscopes::GameAttributes
+Blaze::GameReporting::ArsonMultiKeyscopes::PlayerReport
+Blaze::GameReporting::ArsonMultiKeyscopes::Report
+Blaze::GameReporting::ArsonMultiKeyscopes::Weapon
+Blaze::GameReporting::ArsonMultiStatUpdates::GameAttributes
+Blaze::GameReporting::ArsonMultiStatUpdates::OffensiveAthlete
+Blaze::GameReporting::ArsonMultiStatUpdates::PlayerReport
+Blaze::GameReporting::ArsonMultiStatUpdates::Report
+Blaze::GameReporting::ArsonMultiStatUpdatesKeyscopes::GameAttributes
+Blaze::GameReporting::ArsonMultiStatUpdatesKeyscopes::OffensiveAthlete
+Blaze::GameReporting::ArsonMultiStatUpdatesKeyscopes::PlayerReport
+Blaze::GameReporting::ArsonMultiStatUpdatesKeyscopes::Report
+Blaze::GameReporting::DeadSpace::PlayerReport
+Blaze::GameReporting::DeadSpace::Report
+Blaze::GameReporting::GameEvent
+Blaze::GameReporting::GameEvents
+Blaze::GameReporting::GameHistoryBasic::GameAttributes
+Blaze::GameReporting::GameHistoryBasic::PlayerReport
+Blaze::GameReporting::GameHistoryBasic::Report
+Blaze::GameReporting::GameHistoryClubs_NonDerived::ClubReport
+Blaze::GameReporting::GameHistoryClubs_NonDerived::OffensiveAthlete
+Blaze::GameReporting::GameHistoryClubs_NonDerived::PlayerReport
+Blaze::GameReporting::GameHistoryClubs_NonDerived::Report
+Blaze::GameReporting::GameHistoryReport
+Blaze::GameReporting::GameHistoryReport::TableRow
+Blaze::GameReporting::GameHistoryReport::TableRows
+Blaze::GameReporting::GameReport
+Blaze::GameReporting::GameReportColumn
+Blaze::GameReporting::GameReportColumnKey
+Blaze::GameReporting::GameReportFilter
+Blaze::GameReporting::GameReportQueriesList
+Blaze::GameReporting::GameReportQuery
+Blaze::GameReporting::GameReportType
+Blaze::GameReporting::GameReportTypes
+Blaze::GameReporting::GameReportView
+Blaze::GameReporting::GameReportViewInfo
+Blaze::GameReporting::GameReportViewInfosList
+Blaze::GameReporting::GameReportsList
+Blaze::GameReporting::GetGameReportQuery
+Blaze::GameReporting::GetGameReportViewInfo
+Blaze::GameReporting::GetGameReportViewRequest
+Blaze::GameReporting::GetGameReportViewResponse
+Blaze::GameReporting::GetGameReports
+Blaze::GameReporting::IntegratedSample::GameAttributes
+Blaze::GameReporting::IntegratedSample::PlayerReport
+Blaze::GameReporting::IntegratedSample::Report
+Blaze::GameReporting::ResultNotification
+Blaze::GameReporting::SampleBase::GameAttributes
+Blaze::GameReporting::SampleBase::PlayerReport
+Blaze::GameReporting::SampleBase::Report
+Blaze::GameReporting::SubmitGameReportRequest
+Blaze::GameReporting::UpdateMetricRequest
+Blaze::GeoLocationData
+Blaze::HostNameAddress
+Blaze::IpAddress
+Blaze::IpPairAddress
+Blaze::LookupUsersRequest
+Blaze::LookupUsersResponse
+Blaze::Messaging::ClientMessage
+Blaze::Messaging::DynamicConfig
+Blaze::Messaging::FetchMessageRequest
+Blaze::Messaging::FetchMessageResponse
+Blaze::Messaging::GetMessagesResponse
+Blaze::Messaging::PurgeMessageRequest
+Blaze::Messaging::PurgeMessageResponse
+Blaze::Messaging::SendMessageResponse
+Blaze::Messaging::ServerMessage
+Blaze::Messaging::TouchMessageRequest
+Blaze::Messaging::TouchMessageResponse
+Blaze::NetworkInfo
+Blaze::NotifyUserAdded
+Blaze::NotifyUserRemoved
+Blaze::OnlineStatus
+Blaze::Playgroups::CreatePlaygroupRequest
+Blaze::Playgroups::DestroyPlaygroupRequest
+Blaze::Playgroups::JoinPlaygroupRequest
+Blaze::Playgroups::JoinPlaygroupResponse
+Blaze::Playgroups::KickPlaygroupMemberRequest
+Blaze::Playgroups::LeavePlaygroupRequest
+Blaze::Playgroups::LookupPlaygroupInfoList
+Blaze::Playgroups::LookupPlaygroupInfoRequest
+Blaze::Playgroups::NotifyDestroyPlaygroup
+Blaze::Playgroups::NotifyJoinControlsChange
+Blaze::Playgroups::NotifyJoinPlaygroup
+Blaze::Playgroups::NotifyLeaderChange
+Blaze::Playgroups::NotifyMemberAttributesSet
+Blaze::Playgroups::NotifyMemberJoinedPlaygroup
+Blaze::Playgroups::NotifyMemberPermissionsChange
+Blaze::Playgroups::NotifyMemberRemoveFromPlaygroup
+Blaze::Playgroups::NotifyPlaygroupAttributesSet
+Blaze::Playgroups::NotifyXboxSessionInfo
+Blaze::Playgroups::PlaygroupCensusData
+Blaze::Playgroups::PlaygroupInfo
+Blaze::Playgroups::PlaygroupMemberInfo
+Blaze::Playgroups::ResetPlaygroupSessionRequest
+Blaze::Playgroups::ResetPlaygroupSessionResponse
+Blaze::Playgroups::SetJoinControlsRequest
+Blaze::Playgroups::SetMemberAttributesRequest
+Blaze::Playgroups::SetPlaygroupAttributesRequest
+Blaze::Playgroups::UpdatePlaygroupSessionRequest
+Blaze::QosConfigInfo
+Blaze::QosPingSiteInfo
+Blaze::Redirector::AddressRemapEntry
+Blaze::Redirector::IpAddress
+Blaze::Redirector::NameRemapEntry
+Blaze::Redirector::ServerAddressInfo
+Blaze::Redirector::ServerEndpointInfo
+Blaze::Redirector::ServerInfoData
+Blaze::Redirector::ServerInstance
+Blaze::Redirector::ServerInstanceError
+Blaze::Redirector::ServerInstanceInfo
+Blaze::Redirector::ServerInstanceRequest
+Blaze::Redirector::ServerListRequest
+Blaze::Redirector::ServerListResponse
+Blaze::Redirector::XboxId
+Blaze::Redirector::XboxServerAddress
+Blaze::SetUserInfoAttributeRequest
+Blaze::Stats::CenteredLeaderboardStatsRequest
+Blaze::Stats::DateRange
+Blaze::Stats::EntityCount
+Blaze::Stats::EntityStatAggregates
+Blaze::Stats::EntityStats
+Blaze::Stats::FilteredLeaderboardStatsRequest
+Blaze::Stats::FolderDescriptor
+Blaze::Stats::GetDateRangeRequest
+Blaze::Stats::GetEntityCountRequest
+Blaze::Stats::GetLeaderboardTreeRequest
+Blaze::Stats::GetStatDescsRequest
+Blaze::Stats::GetStatGroupRequest
+Blaze::Stats::GetStatsByGroupRequest
+Blaze::Stats::GetStatsRequest
+Blaze::Stats::GetStatsResponse
+Blaze::Stats::KeyScopeItem
+Blaze::Stats::KeyScopedStatValues
+Blaze::Stats::KeyScopes
+Blaze::Stats::LeaderboardEntityCountRequest
+Blaze::Stats::LeaderboardFolderGroup
+Blaze::Stats::LeaderboardFolderGroupRequest
+Blaze::Stats::LeaderboardGroupRequest
+Blaze::Stats::LeaderboardGroupResponse
+Blaze::Stats::LeaderboardStatKeyColumn
+Blaze::Stats::LeaderboardStatValues
+Blaze::Stats::LeaderboardStatValuesRow
+Blaze::Stats::LeaderboardStatsRequest
+Blaze::Stats::LeaderboardTreeNode
+Blaze::Stats::ScopeValues
+Blaze::Stats::StatCategoryList
+Blaze::Stats::StatCategorySummary
+Blaze::Stats::StatDescSummary
+Blaze::Stats::StatDescs
+Blaze::Stats::StatGroupList
+Blaze::Stats::StatGroupResponse
+Blaze::Stats::StatGroupSummary
+Blaze::Stats::StatRowUpdate
+Blaze::Stats::StatUpdate
+Blaze::Stats::StatValues
+Blaze::Stats::UpdateStatsRequest
+Blaze::Stats::WipeStatsRequest
+Blaze::UpdateHardwareFlagsRequest
+Blaze::UpdatePingSiteLatencyRequest
+Blaze::UpdateUserSessionAttributeRequest
+Blaze::UpdateUserSessionClientDataRequest
+Blaze::UserData
+Blaze::UserDataResponse
+Blaze::UserIdentification
+Blaze::UserSessionDisconnectReason
+Blaze::UserSessionExtendedData
+Blaze::UserSessionExtendedDataUpdate
+Blaze::UserStatus
+Blaze::Util::ClientData
+Blaze::Util::FetchClientConfigRequest
+Blaze::Util::FetchConfigResponse
+Blaze::Util::FilterUserTextResponse
+Blaze::Util::FilteredUserText
+Blaze::Util::GetTelemetryServerRequest
+Blaze::Util::GetTelemetryServerResponse
+Blaze::Util::GetTickerServerResponse
+Blaze::Util::LocalizeStringsRequest
+Blaze::Util::LocalizeStringsResponse
+Blaze::Util::NetworkQosData
+Blaze::Util::PingResponse
+Blaze::Util::PostAuthResponse
+Blaze::Util::PreAuthRequest
+Blaze::Util::PreAuthResponse
+Blaze::Util::PssConfig
+Blaze::Util::SetConnectionStateRequest
+Blaze::Util::UserOptions
+Blaze::Util::UserSettingsLoadAllRequest
+Blaze::Util::UserSettingsLoadAllResponse
+Blaze::Util::UserSettingsLoadRequest
+Blaze::Util::UserSettingsResponse
+Blaze::Util::UserSettingsSaveRequest
+Blaze::Util::UserStringList
+Blaze::Util::UserText
+Blaze::XboxClientAddress
+Blaze::XboxServerAddress
+D:\packages\001\rwaudiocore\5.03.00\source\decoders\speex\libspeex\nb_celp.cpp
+Dac release to ensure proper matching calls.  Games that use AI and AX outside of RwAudioCore should beware of these calls made in Dac::Release().   In other words, when releasing the Voice with the D
+For the PS3 setting stereo output mode will instruct RwAudioCore to only output plain stereo when the OSD audio configuration is also set to stereo mode. This is the default output mode when the OSD i
+For the Xbox 360, all output mode selection is currently handled via the Xbox 360 dashboard screen. RwAudioCore always feeds a 5.1 signal to the Xbox 360 and it will down-mix or encode the audio into 
+Games should default their output mode to stereo on the PC as it is the most compatible output mode (this is the RwAudioCore default as well).
+II. The RwAudioCore reformatting from 7.1 to 5.1 is currently a simple folding in of the far back channels to the back channels. However, in future it is possible that a matrixed solution employing TH
+If playback needs to be scheduled in the near future (e.g. the next few hundred milliseconds), then the EVENT_PLAY1 event should be called from an RwAudioCore timer callback. This will ensure that you
+NOTE - the Wii hardware filter's cutoff frequency is limited to a range of 80 Hz - 15000 Hz, so RwAudioCore will clamp to stay within that range. 
+Note that action is taken on the RwAudioCore Voice that the HwPlayer PlugIn is inserted on.  It has nothing to do with the allocated hardware voices in the sample playback.  Hardware voices are releas
+On Wii, RwAudioCore does not encode Dolby Pro Logic II signals. Instead, the encoding is done by the Wii hardware.  The Dac simply mixes the quad signal with PL2 coefficients and sends the mix to the 
+On the PC where RwAudioCore is in charge of handling the fold down from 7.1 to stereo, an accepted standard for mixing the signals together is used. The LFE is dropped, the backs and far backs are low
+On the PS3 (post RwAudioCore 5.02.01), a special initialization is required before any UserMusicArbiter instances are created. Game code must call UserMusicArbiter::GetRwacCellSysutilCallback() to obt
+On the PS3 it is RwAudioCore itself that encodes Dolby Pro Logic II signals. The encode is performed on the final 5.1 mix and is a proper PL2 encode and fold-down algorithm as recommended by Dolby. Th
+On the PS3, the Dac outputs audio via Sony's libaudio library. One of the libaudio ports is used, leaving three others free for other audio middleware to coexist peacefully with RwAudioCore. As a conv
+On the Wii platform RwAudioCore only supports Pro Logic II.  PL2 encoding is provided by the Wii's Pro Logic II encoder.  Note that RwAudioCore sets the Wii AX mode according to the output mode settin
+On the Xbox 360, the Dac sends its output through an XAudio2 voice. Game code is free to use other XAudio2 voices, meaning both RwAudioCore and other audio systems can output to the speakers at the sa
+RwAudioCore Dac
+RwAudioCore Voice
+RwAudioCore will be the only low level audio middleware being used so game code will not have to deal with the PS3 audio system at all. If cellAudioInit() is initialized by the Dac then it will also c
+Sound buffers outside of RwAudioCore if required, and the code should get along (they will both be heard). The GLOBAL focus means that even if the application loses focus, RwAudioCore will still be he
+The Dac output sample rate affects the overall audio fidelity of RwAudioCore output. Higher sample rates mean higher quality, but more CPU usage.
+The Dac plugin is responsible for taking the RwAudioCore mixer output and ultimately getting it out the speakers so the user can hear the output of RwAudioCore.
+The Dac plugin is special in that it is typically the only true output plugin. This means it actually drives the RwAudioCore mixing process. The Dac plugin will hook itself into some kind of periodic 
+The HwFxReturn PlugIn retrieves the mono effect bus from hardware voices that are played by the HwPlayer PlugIns within the RwAudioCore System.  The effect bus level is controlled through the HwPlayer
+The Resample plugin interpolates the input signal from its sample rate to the RwAudioCore output sample rate, also taking into account any requested pitch changes. Resampling is achieved via two point
+The WiiRemoteSpeaker should always be inserted as the last plugin on a voice. There can be more than one WiiRemoteSpeaker plugin active in RwAudioCore. Each WiiRemoteSpeaker can be mapped to 1 or mult
+The output mode should ideally be set before the Dac is started. However it can be changed while the Dac is running without any side effects to the RwAudioCore code or game code. The audio output will
+The same name cannot be used more than once across all the active SubMix instances. This condition will be asserted on if using the debug version of RwAudioCore, but other versions will not assert and
+The start2 event must be called in order for any RwAudioCore playback to occur. The Dac is not started upon instantiation.
+The start2 event tells the Dac plugin to begin operation.  When started in realtime mode, the Dac will begin driving the RwAudioCore mixer process and outputting the resulting sample data to the speak
+This attribute indicates how much latency in time there is between making an RwAudioCore call, and when the results of the action are heard out of the speakers (e.g. from the time a sample is triggere
+This event will stop the Dac from driving the RwAudioCore mixer and sending output to the speakers.
+Unlike the Xbox 360, the PS3 does not automatically encode audio into the format the user has selected in the OSD.RwAudioCore looks at what audio output modes are set up in the OSD and selects the one
+ac plugin or when releasing the RwAudioCore System, AI and AX will also be shutdown.
+ams have requested PL2 support on PS3 so RwAudioCore provides it via its own encoder. Unfortunately there is no way to select PL2 in the OSD as it doesn't support it. Switching between stereo and PL2 
+d with an RwAudioCore call and the time it begins being heard out of the speakers). The units are in seconds.
+e RwAudioCore code or game code. The audio output will be interrupted for a brief period, which can sound disconcerting. If this is an issue the signal on the mastering voice could be faded down and b
+e RwAudioCore system. The management of the Dac plugin should typically be done by game code, not by data driven audio tools.
+e, the frequency spectrum would be shifted from 0..100 Hertz to 0..50 Hertz. As RwAudioCore doesn't allow pitch control at these points, the controlling layers of RwAudioCore would have to compensate 
+eam signal chain. In order to keep the general purpose plugin case simple and also solve various other pitch synchronization issues, RwAudioCore only allows pitch changes near the top of the source vo
+ed to drive RwAudioCore. Instead of being able to simply plunk down one or more pitch controls on source and submix voices, to achieve desired effects such as singular control at a submix point and do
+ensure performance is adequate. See the RwAudioCore benchmarks for the latest SPU usage differences between stereo, PL2, and 5.1/7.1.
+ent is asynchronous, therefore the sample data will continue to be referenced by RwAudioCore for a short period of time after the call to EVENT_STOP. To ensure the sample data is no longer in use, wai
+er. It will then format the RwAudioCore mixer output appropriately and send it off to the lower level audio system.
+g, so beware of this when the AX library is used outside of RwAudioCore.
+hat each Wii Remote can be mapped to only one WiiRemoteSpeaker instance within the entire RwAudioCore system.
+iple Wii Remotes at a time (up to 4 remotes), but each Wii Remote can only be mapped to one WiiRemoteSpeaker instance in the entire RwAudioCore system.
+is asynchronous, and therefore the sample data will continue to be referenced by RwAudioCore for a short period of time after the call to EVENT_STOP. To ensure the sample data is no longer in use, wai
+it is operating normally as if a sound card is present. RwAudioCore will act as if nothing is wrong. This functionality is provided so that game programmers can handle the missing sound system with ea
+ith RwAudioCore, the user may experience crackling audio or missing channels for example. For that matter the quad, 5.1, and 7.1 modes will almost always be enumerated as supported even if the user on
+m signal chain. In order to keep the general purpose plugin case simple and also solve various other pitch synchronization issues, RwAudioCore only allows pitch changes near the top of the source voic
+modify this memory space while RwAudioCore is accessing it, either by acquiring the RwAudioCore lock, or using a double buffering scheme that precludes conflicts. See also: rw::audio::core::Pan3D::DSP
+pecified rate. The sample rates supported and the rate chosen are printed to the console for the debug version of RwAudioCore if this information is of interest.
+se. The alternative is that special code must be inserted all over the place to handle RwAudioCore API functions not working as expected.
+therefore the sample data will continue to be referenced by RwAudioCore for a short period of time after the call to Stop. To ensure the sample data is no longer in use, wait until the Stop command ha
+update from a self created thread, or hook into a callback from a lower level audio system. It will then periodically determine how many samples need to be mixed and then call into the RwAudioCore mix
+y be respected if the OSD is set to output only 2 channels. Setting of other modes will be ignored, e.g. setting MODE_5POINT1 is meaningless as RwAudioCore only respects the OSD when determining non-s
