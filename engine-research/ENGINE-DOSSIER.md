@@ -48,8 +48,20 @@
 no launch). `dev-archive/tools/proxy-d3d9/src/camhunt.c`; notes:
 `modding-notes/2026-09-14-camera-instrument-built.md`.
 
+⚠️ **The first design could not run and a launch proved it** (Tefa played to a save point,
+2026-09-14): patching `IDirect3D9` slot 16 stood down every time because something else — almost
+certainly the Steam overlay `[hypothesis]` — already held it, and standing down happens *before* a
+device exists. Fixed by **wrapping `IDirect3D9` instead of patching it** (`src/wrap_d3d9.c`): we own
+the `Direct3DCreate9` export, so we hand back our own object and write into no shared vtable. The
+overlay's hook still runs, layered below ours. Notes: `modding-notes/2026-09-14b-standdown-and-the-wrapper-fix.md`.
+
+⭐ **The whole chain is now proven outside the game** `[verified-numerically 2026-09-14]`: the
+wrapper self-test creates a real device in our own process, the instrument installs on it, and a
+planted perspective matrix is detected at the right register with the right handedness. Wrapper
+forwarding checked 16/16 against the real `IDirect3D9`.
+
 It hooks `IDirect3DDevice9::SetVertexShaderConstantF` (slot 94, compile-time asserted against the SDK
-header) via a `CreateDevice` hook (slot 16, likewise), and reports **read-only** which register
+header) from inside the wrapper's `CreateDevice`, and reports **read-only** which register
 receives a projection-shaped 4x4, in which packing, with a handedness reading. It is
 **register-agnostic** — every 4-register window of every upload is tested, in both row and column
 packings — and its "already seen" key is `(xs, ys)` rather than the register, so a shadow pass cannot
