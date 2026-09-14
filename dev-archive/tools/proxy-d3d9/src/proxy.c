@@ -1,24 +1,32 @@
 /*
- * proxy.c — Dead Space 2, stage-1 d3d9 proxy.
+ * proxy.c — Dead Space 2, stage-2 d3d9 proxy.
  *
- * PURPOSE, AND THE REASON IT IS THIS SMALL.
+ * WHAT STAGE 1 ESTABLISHED, AND WHY THIS FILE CHANGED
  *
- * `deadspace2.exe` statically imports `activation.x86.dll` (one function, `start`),
- * so EA's activation layer runs before any game code. The open question for this
- * whole project is simply: DOES THAT LAYER TOLERATE A FOREIGN DLL IN THE GAME
- * FOLDER AT ALL? Everything else — camera hunting, stereo, head tracking — is
- * downstream of that one answer.
+ * Stage 1 exported only Direct3DCreate9 and STOPPED THE GAME LAUNCHING. The A/B
+ * in dev-archive/recon/2026-09-14-proxy-crash-ab-test/ pinned it down:
  *
- * So this file deliberately does almost nothing. It forwards Direct3DCreate9 to
- * the real system d3d9.dll and writes a handful of lines to a log. If the game
- * still reaches its menu, the route is open and the mature proxy in
- * `staging/alan-wake-vr/proxy-d3d9/` (which already hunts view-projection
- * matrices through SetVertexShaderConstantF) can be ported in as stage 2.
+ *   - with our DLL:                 4 crashes out of 4
+ *   - with no DLL:                  runs
+ *   - with a GENUINE Microsoft      runs
+ *     d3d9.dll in the same folder:
  *
- * If instead the game refuses to start, the cause is unambiguous BECAUSE this
- * file is trivial — there is no hooking, no vtable patching and no allocation to
- * blame. A bigger stage-1 proxy would have made a failure uninterpretable, which
- * is the whole reason it is not one.
+ * So the game does not object to a foreign d3d9.dll in its directory — it objects
+ * to OURS. The system DLL exports seventeen functions and we exported one; any
+ * other export the game resolves against us comes back NULL, and calling NULL
+ * produces exactly the crash observed (0xc0000005, fault offset 0x00000000, no
+ * owning module, killed by DEP).
+ *
+ * Stage 2 therefore exports all seventeen: this one implemented, the other sixteen
+ * forwarded by naked thunks in thunks.c. Each thunk logs its first call, so if the
+ * game now runs we learn WHICH export was needed rather than merely watching the
+ * symptom disappear.
+ *
+ * ⚠️ STILL NOT PROVEN. A signature or authenticity check on the DLL would also fit
+ * every observation so far — the genuine DLL is signed and ours is not. If stage 2
+ * still crashes with no THUNK line in the log, that is the remaining explanation,
+ * and the next probe is a dinput8.dll proxy to see whether the objection is to
+ * foreign DLLs generally or to a graphics one specifically.
  *
  * REVERSIBILITY: delete the d3d9.dll next to deadspace2.exe. Nothing else is
  * touched — no game file is modified, no registry key is written.
@@ -33,6 +41,10 @@
 #include <string.h>
 
 typedef void *(WINAPI *PFN_Direct3DCreate9)(UINT);
+
+/* defined in thunks.c */
+extern void *g_thunk_target[16];
+extern const char *const g_thunk_name[16];
 
 static HMODULE  g_self;
 static HMODULE  g_real;
@@ -75,7 +87,7 @@ static void log_pick_path(void) {
     }
 }
 
-static void log_msg(const char *fmt, ...) {
+void log_msg(const char *fmt, ...) {
     FILE *f;
     if (!g_logpath[0]) return;
     if (g_loglock_ready) EnterCriticalSection(&g_loglock);
@@ -116,6 +128,22 @@ static void load_real_dll(void) {
     g_real_create = (PFN_Direct3DCreate9)(void *)GetProcAddress(g_real, "Direct3DCreate9");
     log_msg("real d3d9 loaded from %s (module %p), Direct3DCreate9 = %p",
             path, (void *)g_real, (void *)g_real_create);
+
+    /* Stage 2: resolve the sixteen exports we forward rather than implement.
+     * Stage 1 shipped only Direct3DCreate9, and the A/B showed that is what stops
+     * the game launching -- an unresolved import called as NULL is exactly the
+     * crash we saw. See thunks.c. */
+    {
+        int i, missing = 0;
+        for (i = 0; i < 16; i++) {
+            g_thunk_target[i] = (void *)GetProcAddress(g_real, g_thunk_name[i]);
+            if (!g_thunk_target[i]) {
+                missing++;
+                log_msg("  WARNING: the real d3d9 does not export %s", g_thunk_name[i]);
+            }
+        }
+        log_msg("forwarding table built: %d of 16 resolved", 16 - missing);
+    }
 }
 
 /* ------------------------------------------------------------- the export */
@@ -146,7 +174,7 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, LPVOID reserved) {
 
         exe[0] = 0;
         GetModuleFileNameA(NULL, exe, MAX_PATH);
-        log_msg("=== stage-1 proxy attached ===");
+        log_msg("=== stage-2 proxy attached (all 17 exports) ===");
         log_msg("host process: %s", exe);
         log_msg("log file: %s", g_logpath);
         log_msg("PROXY LOADED — a foreign DLL was allowed into the process.");
