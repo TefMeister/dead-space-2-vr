@@ -27,8 +27,8 @@
 
 ## 4. DRM / anti-debug & injection foothold
 - DRM (CEG/Denuvo/GOG/none); launch-time-debugger behaviour: Two layers suspected, neither tested: the Steam DRM wrapper (`.bind`), and an EA-era **product activation** (`activation.exe`, `activation.x86/x64.dll`, and `activation.xml` titled "Product activation", pointing at EA support) `[inferred-static 2026-09-13]`. The unusual extra sections suggest a packer on top.
-- Attach workflow that works: not yet tested. ⚠️ But the static shape is now clearer: **the exe is not opaque.** Ordinary strings read perfectly (4,828 command names, whole paragraphs of SDK documentation, the full mangled export list). Only the **import table** shows the packed shape — one function per DLL (`CompareStringW`, `MessageBoxA`, `GetStockObject`…), the tell-tale of a wrapper that resolves the real imports after unpacking. That suggests a light wrapper rather than an aggressive protector `[hypothesis]`, based on how much is visible rather than on anything tested. The `ri` and `aYv` sections have **zero raw size** (allocated at load, filled at runtime — classic unpacking scratch space); `QuFIo` holds 15.9 MB raw, `sr` 210 KB.
-- Injection vector that works (proxy DLL name / injector / framework): not yet tested.
+- Attach workflow that works: not yet tested. **A stage-1 `d3d9.dll` proxy is built and deployed as of 2026-09-14** (`dev-archive/tools/proxy-d3d9/`) purely to answer whether the activation layer tolerates a foreign DLL in the game folder. It forwards `Direct3DCreate9` to the system DLL and logs; nothing else. `[compile-verified 2026-09-14]`, hash-reproducible `[verified-numerically 2026-09-14, n=2]`, **not yet run**. Reversal is deleting one file. ⚠️ But the static shape is now clearer: **the exe is not opaque.** Ordinary strings read perfectly (4,828 command names, whole paragraphs of SDK documentation, the full mangled export list). Only the **import table** shows the packed shape — one function per DLL (`CompareStringW`, `MessageBoxA`, `GetStockObject`…), the tell-tale of a wrapper that resolves the real imports after unpacking. That suggests a light wrapper rather than an aggressive protector `[hypothesis]`, based on how much is visible rather than on anything tested. The `ri` and `aYv` sections have **zero raw size** (allocated at load, filled at runtime — classic unpacking scratch space); `QuFIo` holds 15.9 MB raw, `sr` 210 KB.
+- Injection vector that works (proxy DLL name / injector / framework): **`d3d9.dll` next to the exe is the candidate**, and it is available in principle: the exe statically imports `d3d9.dll` by name, and an executable's own directory is searched before the system directory regardless of SafeDllSearchMode `[inferred-static 2026-09-14]`. Whether the activation layer permits it is the open question the stage-1 probe exists to answer.
 
 ## 5. Threading & frame structure
 - Immediate context only, or deferred contexts + command lists?:
@@ -67,7 +67,22 @@
 - Frame-capture method; where images land:
 
 ## 11. Dead ends & false leads (save future time)
-- none yet.
+
+- ⚠️ **Manhunt's RenderWare camera work does NOT transfer to this game. Do not go looking for it.**
+  `[inferred-static 2026-09-14]` — evidence and method: `dev-archive/recon/2026-09-14-renderware-transfer-test/`.
+  Searching `deadspace2.exe` for `RwCamera`, `RwFrame`, `BeginUpdate`, `EndUpdate`, `ViewWindow`,
+  `rwsdk`, `RwEngine`, `RwMatrix` and `RpWorld` returns **nothing**. The same search against
+  `manhunt.exe` floods with `//RenderWare/RW36Active/rwsdk/src/bacamera.c`-style paths, so the test
+  works and the negative is real.
+  - This settles the open half of the 2026-09-14 lineage note: **framework RenderWare-derived,
+    renderer not classic RenderWare 3.x.**
+  - ⚠️ It does **not** prove the renderer shares nothing with RenderWare — only that the 3.6
+    identifiers are absent, and strings prove nothing about code carrying no strings. What it does
+    kill is the shortcut: Manhunt's offsets, function names and its
+    "write the camera frame before `RwCameraBeginUpdate`" plan do not apply here.
+  - **So the camera hunt starts at the ordinary route:** a `d3d9.dll` proxy watching
+    `SetVertexShaderConstantF`, helped by the fact that this game imports `D3DXGetShaderConstantTable`
+    and so carries **named** shader constants.
 
 ## 12. Open risks toward the North Star
 - ⚠️ **The Burnout Paradise lesson applies, and the static picture makes it sharper, not softer.** `deadspace2.exe` **statically imports `activation.x86.dll`** (one function, `start`) `[inferred-static 2026-09-14]`. Being in the import table means Windows resolves it **before a single line of game code runs** — it is not something the game asks for later and can skip. The very first job is still to launch it unmodified and see that it reaches gameplay, before anything is built.
