@@ -1,0 +1,38 @@
+======================================================================
+D:/Program Files (x86)/Steam/steamapps/common/Dead Space 2/deadspace2.exe
+  bits=32  linked=0 (zeroed)  imagebase=0x400000
+  ASLR(DYNAMIC_BASE)=NO  NX=yes  relocs_stripped=no
+  sections:
+    .text      vaddr=    0x1000 vsize=  23724032 rawsize=  23721984 chars=0x60000020
+    .rdata     vaddr= 0x16a1000 vsize=   1634304 rawsize=   1631232 chars=0x40000040
+    .data      vaddr= 0x1830000 vsize=   5406720 rawsize=   4112896 chars=0xc0000040
+    .idata     vaddr= 0x1d58000 vsize=     12288 rawsize=     10752 chars=0xc0000040
+    .tls       vaddr= 0x1d5b000 vsize=      4096 rawsize=      1024 chars=0xc0000040
+    .rsrc      vaddr= 0x1d5c000 vsize=     24576 rawsize=     22528 chars=0x40000040
+    .reloc     vaddr= 0x1d62000 vsize=   2502656 rawsize=   2500096 chars=0x40000040
+    .bind      vaddr= 0x1fc5000 vsize=    360448 rawsize=    360448 chars=0x60000040
+    ri         vaddr= 0x201d000 vsize=     65536 rawsize=         0 chars=0xc0000080
+    aYv        vaddr= 0x202d000 vsize=   4194304 rawsize=         0 chars=0xe00000a0
+    QuFIo      vaddr= 0x242d000 vsize=  15872000 rawsize=  15872000 chars=0x60000020
+    sr         vaddr= 0x3350000 vsize=    212992 rawsize=    210432 chars=0x40000040
+  imports:
+    DSOUND.dll                   (   1) 
+    WS2_32.dll                   (   1) recvfrom
+    WINMM.dll                    (   1) waveInReset
+    KERNEL32.dll                 (   1) CompareStringW
+    USER32.dll                   (   1) MessageBoxA
+    GDI32.dll                    (   1) GetStockObject
+    ADVAPI32.dll                 (   1) RegSetValueExW
+    SHELL32.dll                  (   1) SHGetFolderPathAndSubDirW
+    ole32.dll                    (   1) CoInitialize
+    OLEAUT32.dll                 (   1) SysFreeString
+    VERSION.dll                  (   1) GetFileVersionInfoA
+    IMM32.dll                    (   1) ImmDisableIME
+    DINPUT8.dll                  (   1) DirectInput8Create
+    d3d9.dll                     (   1) Direct3DCreate9
+    d3dx9_43.dll                 (   1) D3DXGetShaderConstantTable
+    IPHLPAPI.DLL                 (   1) GetAdaptersAddresses
+    XINPUT1_3.dll                (   1) 
+    kernel32.dll                 (   4) VirtualProtect, LoadLibraryA, GetProcAddress, GetModuleHandleA
+    activation.x86.dll           (   1) start
+  exports: 12 -> ??0LevelManager@MainLoop@EARS@@QAE@PBD0000@Z, ??0LevelServices@Services@MainLoop@EARS@@QAE@AAV123@@Z, ??0Services@MainLoop@EARS@@QAE@XZ, ?CreateMainWindow@Windows@EARS@@YAPAUHWND__@@_NW4WindowState@12@HHHH@Z, ?DefineInputTrigger@RemappableControls_DS@EARS@@AAEXIW4PcKeyScancode@controller@core@rw@@000W4MouseTrigger@2@W4ControlRemappable@Framework@2@@Z, ?DetectConfig@?A0x0c7fa248@QualitySettings@EARS@@YA?AW4Config@23@XZ, ?GamePadConfig@0EARS@@YAXXZ, ?Init@Mouse@Windows@EARS@@YAXXZ, ?Open@StartUp@RWS@@YA_NXZ, ?RegisterEntityClasses@EARS@@YAXXZ, ?SetCommonInventoryMappings@ControlSchemes@EARS@@YAXAAVControlRemapper@Framework@2@PAVControlMapping@42@1W4SchemeType@12@@Z, ?SetCommonPlayerControlMappings@ControlSchemes@EARS@@YAXAAVControlRemapper@Framework@2@PAVControlMapping@42@1W4SchemeType@12@_N@Z
