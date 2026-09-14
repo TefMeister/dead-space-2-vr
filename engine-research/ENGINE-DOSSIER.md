@@ -133,11 +133,53 @@ If the log counts uploads but finds nothing perspective-shaped, that is a real f
 approach changes.
 
 - How the world transform reaches the GPU (shared VP buffer / per-draw MVP /
-  other), with **shader-reflection / disassembly evidence**:
+  other), with **shader-reflection / disassembly evidence**: **open.** `c0+4` is written 36,987× per
+  5 s and is never perspective-shaped after load, so it is probably the per-object world or
+  world-view matrix `[hypothesis]`. Its contents have not been read.
 - Exact constant-buffer slot, parameter name(s), byte offset(s), layout,
-  handedness, row/column convention:
-- Where projection `P` / FOV comes from:
-- The per-eye override maths (`K_eye = …`):
+  handedness, row/column convention: **c4, four registers, layout R (register i = row i),
+  row-vector `clip = view * M`, LEFT-handed (`m[11] = +1`, `clip.w = +view.z`)**
+  `[verified-live 2026-09-14, n=1 session]`. Parameter names unknown — the DS2DAT archives have not
+  been opened.
+- Where projection `P` / FOV comes from: unknown in code; observed to animate smoothly (a 60→70°
+  sweep), so something drives it per frame.
+
+### ✅ The per-eye override maths — DERIVED 2026-09-14 `[verified-numerically 2026-09-14, 59 checks]`
+
+For an eye displaced by `e` along `+view.x`, converging at distance `zc`, **two elements change and
+no others**:
+
+```
+m[12] = -xs * e          (3,0)  eye offset  -> parallax, a 1/z term
+m[8]  =  xs * e / zc     (2,0)  convergence -> a constant NDC x offset
+```
+
+`xs = m[0] = -1.944444`. Code `dev-archive/tools/proxy-d3d9/src/stereo.{c,h}`, test
+`test/stereo_selftest.c`, note `modding-notes/2026-09-14d-the-stereo-shear-derived.md`.
+
+⭐ **Both terms are in the PROJECTION, so per-eye stereo does not wait on c0 being confirmed.** This
+corrects the earlier reading that c4's half was a single "shear": `m[8]` alone gives a flat image
+shifted sideways by the same amount at every depth, which is not stereo. The selftest caught that on
+its first run, by the disparity coming out constant.
+
+⭐ **The depth triplet `m[10]/m[11]/m[14]` is carried over untouched and identically in both eyes**,
+so this game's non-textbook depth mapping cannot be tripped over by the stereo maths. That closes the
+worry recorded the same day — by construction rather than by argument.
+
+⚠️ **SIGN TRAP.** `xs` is **negative** (X mirrored), and `sign(e_right − e_left) = sign(xs)`, so the
+**right eye takes a NEGATIVE `e`** — the opposite of the textbook. Backwards swaps the eyes: no
+crash, fine on a monitor, sickening in a headset. `stereo_right_eye_sign()` derives it from the
+matrix rather than hard-coding it, and the test checks both directions.
+
+⚠️ **That rule assumes the mirror is in the projection ALONE** `[hypothesis]`. If c0's view matrix
+also negates X the two cancel and the correct sign flips back. **The check, needing no headset:**
+read c0 and take the determinant of its upper-left 3×3 — **+1** means the rule stands as written,
+**−1** means it inverts. That is the same row as the queued c0 logging job.
+
+⚠️ **Nothing has been run against the game.** Untested: that the game accepts a modified c4, that c4
+is the only projection consumer, and that nothing re-uploads it after we write. The game's own
+culling is untouched, so edge pop-in is expected. `zc` has no measured value — the view-space unit
+scale is unknown, so an IPD in millimetres cannot be set yet.
 
 ## 7. Constant-buffer fill mechanism
 - Map/DISCARD ring / UpdateSubresource / D3D11.1 offset / **persistent map +

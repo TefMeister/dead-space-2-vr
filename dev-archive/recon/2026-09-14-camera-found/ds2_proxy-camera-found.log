@@ -1,0 +1,225 @@
+[15:43:46.930] === stage-4 proxy attached: 17 exports, IDirect3D9 wrapper, camera instrument ===
+[15:43:46.930] host process: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\deadspace2.exe
+[15:43:46.930] log file: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\ds2_proxy.log
+[15:43:46.930] PROXY LOADED — a foreign DLL was allowed into the process.
+[15:43:46.933] real d3d9 loaded from C:\Windows\system32\d3d9.dll (module 738C0000), Direct3DCreate9 = 73924B20
+[15:43:46.933] forwarding table built: 16 of 16 resolved
+[15:43:53.206] THUNK: the game called D3DPERF_GetStatus  <-- an export stage 1 did NOT provide
+[15:43:53.206] THUNK: the game called D3DPERF_SetOptions  <-- an export stage 1 did NOT provide
+[15:43:53.370] Direct3DCreate9(SDKVersion=32) called  <-- THE GAME REACHED D3D9 INIT
+[15:43:53.607]   forwarded; the real Direct3DCreate9 returned 05823188
+[15:43:53.607] returning OUR IDirect3D9 09AB0910 wrapping the real 05823188. Nothing was written into a shared vtable, so no other hook is ahead of us and none is disturbed - the Steam overlay's hook still runs, layered below every one of our forwarders.
+[15:43:53.616] IDirect3D9::CreateDevice (through OUR wrapper): Adapter=0 DeviceType=1 hFocusWindow=0031087C BehaviorFlags=0x54  <-- PUREDEVICE: D3D9 refuses Get* on shader constants on a pure device
+[15:43:53.616]   pp: 1280x720 windowed=1 swapeffect=1 autoDS=0 refresh=0 presentInterval=0x80000000
+[15:43:53.822]   -> hr=0x00000000 device=0E242E80
+[15:43:53.823] CAMHUNT: SetVertexShaderConstantF hooked at device vtable slot 94 (real=739F8CC0). Scanning EVERY register window for a projection - no register is assumed.
+[15:43:53.829] THUNK: the game called DebugSetMute  <-- an export stage 1 did NOT provide
+[15:43:57.759] PERSPECTIVE-SHAPED 4x4 at c0, layout R (3 uploads seen so far):
+[15:43:57.759]     signature xs=-1.732051 ys=3.079201   seen at: c0
+[15:43:57.759]     [   -1.732051     0.000000     0.000000     0.000000]
+[15:43:57.759]     [    0.000000     3.079201     0.000000     0.000000]
+[15:43:57.759]     [    0.000000     0.000000     0.990097     1.000000]
+[15:43:57.759]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:43:57.760]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:01.966] VS upload ranges in the last 5000 ms (start+count:n): c0+128:122 c128+128:121 c0+4:249 c0+1:125
+[15:44:01.966] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c0 R -1.732051 3.079201 -1.7778 n=126]
+[15:44:01.966]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:01.966]     distinct-signature table: 1/24 slots used, 0 dropped
+[15:44:06.980] VS upload ranges in the last 5016 ms (start+count:n): c0+128:37 c128+128:38 c0+4:665 c0+1:150 c16+10:272 c4+4:302 c8+4:175 c12+4:127 c10+2:62 c8+2:62 c12+10:239 c4+1:93 c5+4:62 c9+1:62 c10+1:62
+[15:44:06.980] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c0 R -1.732051 3.079201 -1.7778 n=151] [c8 R -1.732051 3.079201 -1.7778 n=65]
+[15:44:06.980]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:06.980]     distinct-signature table: 1/24 slots used, 0 dropped
+[15:44:10.614] PERSPECTIVE-SHAPED 4x4 at c4, layout R (8813 uploads seen so far):
+[15:44:10.614]     signature xs=-1.944444 ys=3.456790   seen at: c4
+[15:44:10.614]     [   -1.944444     0.000000     0.000000     0.000000]
+[15:44:10.614]     [    0.000000     3.456790     0.000000     0.000000]
+[15:44:10.615]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:10.615]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:10.615]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:11.980] VS upload ranges in the last 5000 ms (start+count:n): c0+4:2376 c0+1:78 c16+10:1715 c4+4:1785 c8+4:521 c12+4:442 c10+2:191 c8+2:191 c12+10:723 c4+1:222 c5+4:221 c9+1:221 c10+1:221
+[15:44:11.980] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c8 R -1.732051 3.079201 -1.7778 n=79] [c0 R -1.732051 3.079201 -1.7778 n=78] [c4 R -1.944444 3.456790 -1.7778 n=41]
+[15:44:11.980]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:11.981]     distinct-signature table: 2/24 slots used, 0 dropped
+[15:44:15.633] PERSPECTIVE-SHAPED 4x4 at c18, layout C (19457 uploads seen so far):
+[15:44:15.634]     signature xs=0.005000 ys=0.000000   seen at: c18
+[15:44:15.634]     [    0.005000     0.000000    -0.050000   200.000000]
+[15:44:15.634]     [    0.000000     0.000000   128.000000     0.000000]
+[15:44:15.634]     [    1.000000     1.000000     1.000000     1.000000]
+[15:44:15.634]     [    0.000000     0.000000     1.000000     0.000000]
+[15:44:15.634]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:17.002] VS upload ranges in the last 5015 ms (start+count:n): c0+4:27409 c16+10:2089 c4+4:13088 c8+4:1062 c12+4:1037 c10+2:1114 c8+2:1963 c12+10:3313 c4+1:5605 c5+4:116 c9+1:116 c10+1:116 c5+1:5369 c6+1:4974 c7+1:214 c4+3:5929 c8+1:76 c33+1:41
+[15:44:17.002] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c4 R -1.944444 3.456790 -1.7778 n=794] [c0 R -1.732051 3.079201 -1.7778 n=41] [c18 C 0.005000 0.000000 0.0000 n=246]
+[15:44:17.002]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:17.002]     distinct-signature table: 3/24 slots used, 0 dropped
+[15:44:22.002] VS upload ranges in the last 5000 ms (start+count:n): c0+4:100266 c0+1:30 c16+10:1305 c4+4:46867 c8+4:910 c12+4:901 c10+2:1672 c8+2:2953 c12+10:5605 c4+1:24613 c5+4:367 c9+1:348 c10+1:348 c5+1:23446 c6+1:20377 c7+1:963 c4+3:25200 c8+1:300 c33+1:150
+[15:44:22.002] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c4 R -1.944444 3.456790 -1.7778 n=1026] [c18 C 0.005000 0.000000 0.0000 n=900]
+[15:44:22.002]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:22.002]     distinct-signature table: 3/24 slots used, 0 dropped
+[15:44:27.010] VS upload ranges in the last 5016 ms (start+count:n): c0+4:79149 c0+1:28 c16+10:1910 c4+4:34150 c8+4:1358 c12+4:1358 c10+2:1809 c8+2:4761 c12+10:5857 c4+1:28231 c5+4:303 c9+1:303 c10+1:303 c5+1:27077 c6+1:15291 c7+1:1192 c4+3:17471 c8+1:208 c33+1:104
+[15:44:27.011] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c4 R -1.944444 3.456790 -1.7778 n=1393] [c18 C 0.005000 0.000000 0.0000 n=624]
+[15:44:27.011]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:27.011]     distinct-signature table: 3/24 slots used, 0 dropped
+[15:44:32.013] VS upload ranges in the last 5000 ms (start+count:n): c0+4:6997 c16+10:449 c4+4:2452 c8+4:300 c12+4:300 c4+1:31306 c9+1:143 c10+1:143 c5+1:30713 c6+1:2675 c7+1:1147 c4+3:286 c8+1:286 c8+3:858 c11+1:143 c12+1:143 c13+1:143
+[15:44:32.013]     distinct-signature table: 3/24 slots used, 0 dropped
+[15:44:35.916] PERSPECTIVE-SHAPED 4x4 at c4, layout R (702227 uploads seen so far):
+[15:44:35.916]     signature xs=-1.731114 ys=3.077537   seen at: c4
+[15:44:35.916]     [   -1.731114     0.000000     0.000000     0.000000]
+[15:44:35.916]     [    0.000000     3.077537     0.000000     0.000000]
+[15:44:35.916]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:35.917]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:35.917]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:35.924] PERSPECTIVE-SHAPED 4x4 at c4, layout R (702924 uploads seen so far):
+[15:44:35.924]     signature xs=-1.726025 ys=3.068488   seen at: c4
+[15:44:35.924]     [   -1.726025     0.000000     0.000000     0.000000]
+[15:44:35.925]     [    0.000000     3.068488     0.000000     0.000000]
+[15:44:35.925]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:35.925]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:35.925]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:35.956] PERSPECTIVE-SHAPED 4x4 at c4, layout R (703203 uploads seen so far):
+[15:44:35.956]     signature xs=-1.720451 ys=3.058580   seen at: c4
+[15:44:35.956]     [   -1.720451     0.000000     0.000000     0.000000]
+[15:44:35.957]     [    0.000000     3.058580     0.000000     0.000000]
+[15:44:35.957]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:35.957]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:35.957]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:35.991] PERSPECTIVE-SHAPED 4x4 at c4, layout R (703482 uploads seen so far):
+[15:44:35.991]     signature xs=-1.713183 ys=3.045659   seen at: c4
+[15:44:35.991]     [   -1.713183     0.000000     0.000000     0.000000]
+[15:44:35.991]     [    0.000000     3.045659     0.000000     0.000000]
+[15:44:35.991]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:35.991]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:35.991]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.023] PERSPECTIVE-SHAPED 4x4 at c4, layout R (703754 uploads seen so far):
+[15:44:36.024]     signature xs=-1.704037 ys=3.029400   seen at: c4
+[15:44:36.024]     [   -1.704037     0.000000     0.000000     0.000000]
+[15:44:36.024]     [    0.000000     3.029400     0.000000     0.000000]
+[15:44:36.024]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.024]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.024]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.058] PERSPECTIVE-SHAPED 4x4 at c4, layout R (704073 uploads seen so far):
+[15:44:36.058]     signature xs=-1.693687 ys=3.010999   seen at: c4
+[15:44:36.058]     [   -1.693687     0.000000     0.000000     0.000000]
+[15:44:36.058]     [    0.000000     3.010999     0.000000     0.000000]
+[15:44:36.059]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.059]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.059]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.089] PERSPECTIVE-SHAPED 4x4 at c4, layout R (704397 uploads seen so far):
+[15:44:36.089]     signature xs=-1.682035 ys=2.990285   seen at: c4
+[15:44:36.089]     [   -1.682035     0.000000     0.000000     0.000000]
+[15:44:36.090]     [    0.000000     2.990285     0.000000     0.000000]
+[15:44:36.090]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.090]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.090]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.122] PERSPECTIVE-SHAPED 4x4 at c4, layout R (704714 uploads seen so far):
+[15:44:36.123]     signature xs=-1.669247 ys=2.967550   seen at: c4
+[15:44:36.123]     [   -1.669247     0.000000     0.000000     0.000000]
+[15:44:36.123]     [    0.000000     2.967550     0.000000     0.000000]
+[15:44:36.123]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.123]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.123]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.157] PERSPECTIVE-SHAPED 4x4 at c4, layout R (705038 uploads seen so far):
+[15:44:36.157]     signature xs=-1.655066 ys=2.942340   seen at: c4
+[15:44:36.157]     [   -1.655066     0.000000     0.000000     0.000000]
+[15:44:36.157]     [    0.000000     2.942340     0.000000     0.000000]
+[15:44:36.158]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.158]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.158]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.190] PERSPECTIVE-SHAPED 4x4 at c4, layout R (705362 uploads seen so far):
+[15:44:36.190]     signature xs=-1.640063 ys=2.915668   seen at: c4
+[15:44:36.190]     [   -1.640063     0.000000     0.000000     0.000000]
+[15:44:36.190]     [    0.000000     2.915668     0.000000     0.000000]
+[15:44:36.190]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.190]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.190]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.223] PERSPECTIVE-SHAPED 4x4 at c4, layout R (705689 uploads seen so far):
+[15:44:36.223]     signature xs=-1.624907 ys=2.888723   seen at: c4
+[15:44:36.223]     [   -1.624907     0.000000     0.000000     0.000000]
+[15:44:36.223]     [    0.000000     2.888723     0.000000     0.000000]
+[15:44:36.223]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.224]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.224]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.257] PERSPECTIVE-SHAPED 4x4 at c4, layout R (706013 uploads seen so far):
+[15:44:36.257]     signature xs=-1.609828 ys=2.861917   seen at: c4
+[15:44:36.257]     [   -1.609828     0.000000     0.000000     0.000000]
+[15:44:36.257]     [    0.000000     2.861917     0.000000     0.000000]
+[15:44:36.257]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.257]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.257]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.290] PERSPECTIVE-SHAPED 4x4 at c4, layout R (706337 uploads seen so far):
+[15:44:36.290]     signature xs=-1.593586 ys=2.833041   seen at: c4
+[15:44:36.290]     [   -1.593586     0.000000     0.000000     0.000000]
+[15:44:36.290]     [    0.000000     2.833041     0.000000     0.000000]
+[15:44:36.290]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.291]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.291]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.323] PERSPECTIVE-SHAPED 4x4 at c4, layout R (706654 uploads seen so far):
+[15:44:36.323]     signature xs=-1.577783 ys=2.804948   seen at: c4
+[15:44:36.323]     [   -1.577783     0.000000     0.000000     0.000000]
+[15:44:36.323]     [    0.000000     2.804948     0.000000     0.000000]
+[15:44:36.323]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.323]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.324]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.356] PERSPECTIVE-SHAPED 4x4 at c4, layout R (706984 uploads seen so far):
+[15:44:36.357]     signature xs=-1.562118 ys=2.777098   seen at: c4
+[15:44:36.357]     [   -1.562118     0.000000     0.000000     0.000000]
+[15:44:36.357]     [    0.000000     2.777098     0.000000     0.000000]
+[15:44:36.357]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.357]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.357]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.390] PERSPECTIVE-SHAPED 4x4 at c4, layout R (707315 uploads seen so far):
+[15:44:36.391]     signature xs=-1.546292 ys=2.748964   seen at: c4
+[15:44:36.391]     [   -1.546292     0.000000     0.000000     0.000000]
+[15:44:36.391]     [    0.000000     2.748964     0.000000     0.000000]
+[15:44:36.391]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.391]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.391]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.423] PERSPECTIVE-SHAPED 4x4 at c4, layout R (707645 uploads seen so far):
+[15:44:36.424]     signature xs=-1.531395 ys=2.722480   seen at: c4
+[15:44:36.424]     [   -1.531395     0.000000     0.000000     0.000000]
+[15:44:36.424]     [    0.000000     2.722480     0.000000     0.000000]
+[15:44:36.424]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.424]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.424]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.458] PERSPECTIVE-SHAPED 4x4 at c4, layout R (707976 uploads seen so far):
+[15:44:36.459]     signature xs=-1.516674 ys=2.696309   seen at: c4
+[15:44:36.459]     [   -1.516674     0.000000     0.000000     0.000000]
+[15:44:36.459]     [    0.000000     2.696309     0.000000     0.000000]
+[15:44:36.459]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.459]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.459]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.490] PERSPECTIVE-SHAPED 4x4 at c4, layout R (708308 uploads seen so far):
+[15:44:36.490]     signature xs=-1.503129 ys=2.672230   seen at: c4
+[15:44:36.490]     [   -1.503129     0.000000     0.000000     0.000000]
+[15:44:36.490]     [    0.000000     2.672230     0.000000     0.000000]
+[15:44:36.490]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.490]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.490]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.524] PERSPECTIVE-SHAPED 4x4 at c4, layout R (708642 uploads seen so far):
+[15:44:36.524]     signature xs=-1.490067 ys=2.649008   seen at: c4
+[15:44:36.524]     [   -1.490067     0.000000     0.000000     0.000000]
+[15:44:36.524]     [    0.000000     2.649008     0.000000     0.000000]
+[15:44:36.524]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.524]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.525]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:36.556] PERSPECTIVE-SHAPED 4x4 at c4, layout R (708980 uploads seen so far):
+[15:44:36.556]     signature xs=-1.478364 ys=2.628204   seen at: c4
+[15:44:36.556]     [   -1.478364     0.000000     0.000000     0.000000]
+[15:44:36.557]     [    0.000000     2.628204     0.000000     0.000000]
+[15:44:36.557]     [    0.000000     0.000000     0.990097     1.000000]
+[15:44:36.557]     [    0.000000     0.000000    -0.099010     0.000000]
+[15:44:36.557]     reading: w-from-z = +1 -> clip.w = +view.z, LEFT-handed.
+[15:44:37.023] VS upload ranges in the last 5000 ms (start+count:n): c0+4:10300 c16+10:1247 c4+4:3721 c8+4:396 c12+4:299 c10+2:124 c8+2:97 c12+10:142 c4+1:25003 c5+4:253 c9+1:434 c10+1:366 c5+1:23849 c6+1:2153 c7+1:999 c4+3:815 c8+1:334 c33+1:34 c8+3:894 c11+1:215 c12+1:149 c13+1:149
+[15:44:37.023] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c4 R -1.428148 2.538930 -1.7778 n=100]
+[15:44:37.023]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:37.023]     distinct-signature table: 24/24 slots used, 39 dropped  <-- SATURATED: new projections are being LOST. Read the LIVE line above, not the one-shot announcements.
+[15:44:42.020] VS upload ranges in the last 5000 ms (start+count:n): c0+4:24365 c16+10:4788 c4+4:9104 c8+4:863 c12+4:300 c10+2:750 c8+2:450 c12+10:750 c4+1:3450 c5+4:1050 c9+1:1350 c10+1:1050 c5+1:450 c6+1:450 c7+1:450 c4+3:2700 c8+1:505 c33+1:150 c8+3:900 c11+1:450 c12+1:150 c13+1:150
+[15:44:42.020] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c4 R -1.428148 2.538930 -1.7778 n=545]
+[15:44:42.020]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:42.020]     distinct-signature table: 24/24 slots used, 584 dropped  <-- SATURATED: new projections are being LOST. Read the LIVE line above, not the one-shot announcements.
+[15:44:47.010] VS upload ranges in the last 5000 ms (start+count:n): c0+4:36987 c0+1:30 c16+10:3864 c4+4:12890 c8+4:1022 c12+4:618 c10+2:857 c8+2:644 c12+10:1352 c4+1:9383 c5+4:703 c9+1:889 c10+1:703 c5+1:7096 c6+1:4405 c7+1:1178 c4+3:5254 c8+1:421 c33+1:119 c8+3:558 c11+1:279 c12+1:93 c13+1:93
+[15:44:47.010] LIVE perspective signatures this period (reg layout xs ys ys/xs n): [c4 R -1.944444 3.456790 -1.7778 n=551] [c18 C 0.005000 0.000000 0.0000 n=158]
+[15:44:47.010]     THE CAMERA is the signature whose ys/xs equals the display aspect ratio (1.7778 at 16:9). A shadow pass is usually square (ratio 1.0).
+[15:44:47.010]     distinct-signature table: 24/24 slots used, 863 dropped  <-- SATURATED: new projections are being LOST. Read the LIVE line above, not the one-shot announcements.
+[15:44:50.524] wrapper IDirect3D9 09AB0910 released (real=05823188)
+[15:44:50.530] CAMHUNT: hook removed. 1032606 uploads observed, 24 distinct projection signature(s), 863 dropped.
+[15:44:50.530] === detached ===
