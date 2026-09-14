@@ -1,0 +1,25 @@
+[14:47:40.874] === stage-2 proxy attached (all 17 exports) ===
+[14:47:40.874] host process: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\deadspace2.exe
+[14:47:40.874] log file: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\ds2_proxy.log
+[14:47:40.875] PROXY LOADED — a foreign DLL was allowed into the process.
+[14:47:40.877] real d3d9 loaded from C:\Windows\system32\d3d9.dll (module 738D0000), Direct3DCreate9 = 73934B20
+[14:47:40.877] forwarding table built: 16 of 16 resolved
+[14:47:46.953] THUNK: the game called D3DPERF_GetStatus  <-- an export stage 1 did NOT provide
+[14:47:46.953] THUNK: the game called D3DPERF_SetOptions  <-- an export stage 1 did NOT provide
+[14:47:47.098] Direct3DCreate9(SDKVersion=32) called  <-- THE GAME REACHED D3D9 INIT
+[14:47:47.260]   forwarded; the real Direct3DCreate9 returned 0592BAA0
+[14:47:48.152] THUNK: the game called DebugSetMute  <-- an export stage 1 did NOT provide
+[14:48:18.029] === detached ===
+[15:28:58.102] === stage-2 proxy attached (all 17 exports) ===
+[15:28:58.103] host process: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\deadspace2.exe
+[15:28:58.103] log file: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\ds2_proxy.log
+[15:28:58.103] PROXY LOADED — a foreign DLL was allowed into the process.
+[15:28:58.105] real d3d9 loaded from C:\Windows\system32\d3d9.dll (module 738D0000), Direct3DCreate9 = 73934B20
+[15:28:58.105] forwarding table built: 16 of 16 resolved
+[15:29:04.167] THUNK: the game called D3DPERF_GetStatus  <-- an export stage 1 did NOT provide
+[15:29:04.167] THUNK: the game called D3DPERF_SetOptions  <-- an export stage 1 did NOT provide
+[15:29:04.334] Direct3DCreate9(SDKVersion=32) called  <-- THE GAME REACHED D3D9 INIT
+[15:29:04.526]   forwarded; the real Direct3DCreate9 returned 05849E30
+[15:29:04.527] REFUSING to hook IDirect3D9 slot 16: it holds 73794E60, not owned by the real d3d9.dll. Standing down - the game still runs, only the instrument is lost.
+[15:29:04.769] THUNK: the game called DebugSetMute  <-- an export stage 1 did NOT provide
+[15:35:28.628] === detached ===

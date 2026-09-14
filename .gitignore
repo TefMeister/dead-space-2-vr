@@ -15,3 +15,15 @@
 # Local scratch
 /tmp/
 *.log
+
+# ...EXCEPT recon evidence, which IS the finding rather than scratch.
+#
+# ⚠️ Added 2026-09-14 after the blanket *.log above silently swallowed
+# dev-archive/recon/2026-09-14-camera-found/ds2_proxy-camera-found.log — the sole
+# proof of the whole camera result. The board and two notes cited it as committed
+# evidence; git had quietly refused it, and nothing said so. A session that adds a
+# log and sees no error has no reason to look further, so this would have kept
+# happening to every capture this project ever makes.
+#
+# Logs anywhere else (the game folder, build/, stray scratch) stay ignored.
+!dev-archive/recon/**/*.log
