@@ -22,8 +22,8 @@ The 2026-09-13 dossier recorded *"Visceral Games' own in-house engine `[reported
 checked against the binary"*. **It has now been checked against the binary, and the honest answer is
 different** `[inferred-static 2026-09-14]`.
 
-The exe's own **exported** symbols demangle into a namespace called **`EARS`** — EA RenderWare Studio
-— sitting on top of RenderWare's `rw` namespace:
+The exe's own **exported** symbols demangle into a namespace called **`EARS`**, sitting on top of
+RenderWare's own `rw` and `RWS` namespaces:
 
 ```
 ?Open@StartUp@RWS@@YA_NXZ                                   -> RWS::StartUp::Open()
@@ -32,6 +32,9 @@ The exe's own **exported** symbols demangle into a namespace called **`EARS`** �
 ?DefineInputTrigger@RemappableControls_DS@EARS@@ ... rw::core::controller::PcKeyScancode ...
 ??0LevelManager@MainLoop@EARS@@ ...                         -> EARS::MainLoop::LevelManager
 ```
+
+⚠️ **RenderWare is the solid part of that.** Reading `EARS` as *EA RenderWare Studio* is a
+plain-sense expansion of the acronym — inference, not something the binary states.
 
 The `.rdata` section also carries **large slabs of RenderWare audio SDK documentation** verbatim
 (`RwAudioCore`, `core::Pan2D1::SetDefaultFarRearSpeakerAngle`, speaker-mode prose for PS3/360).
