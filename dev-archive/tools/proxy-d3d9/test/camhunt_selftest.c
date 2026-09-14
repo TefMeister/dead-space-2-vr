@@ -135,6 +135,29 @@ int main(void) {
     check("a view matrix transposed", camhunt_classify(t), CAMHUNT_NONE);
     memset(m, 0, sizeof m);
     check("all zeros", camhunt_classify(m), CAMHUNT_NONE);
+    {
+        /* The exact block that fooled the detector in Dead Space 2 gameplay at
+         * c18 on 2026-09-14. Kept verbatim: a regression test written from a
+         * real false positive is worth more than an invented one. */
+        static const float c18[16] = {
+            0.005f, 0.0f,  -0.05f, 200.0f,
+            0.0f,   0.0f, 128.0f,    0.0f,
+            1.0f,   1.0f,   1.0f,    1.0f,
+            0.0f,   0.0f,   1.0f,    0.0f
+        };
+        float tmp[16];
+        memcpy(tmp, c18, sizeof tmp);
+        check("the real c18 false positive from DS2 gameplay", camhunt_classify(tmp), CAMHUNT_NONE);
+    }
+    {
+        /* A projection with an absurdly wide field must still be ACCEPTED - the
+         * new gate must reject junk without narrowing what counts as a camera. */
+        float wide[16];
+        persp_lh(wide, 3.1241f, 16.0f/9.0f, 0.1f, 1000.0f);   /* 179 degrees */
+        check("a 179-degree field is still a projection", camhunt_classify(wide), CAMHUNT_ROW);
+        persp_lh(wide, 0.0174533f, 16.0f/9.0f, 0.1f, 1000.0f); /* 1 degree */
+        check("a 1-degree field is still a projection", camhunt_classify(wide), CAMHUNT_ROW);
+    }
 
     printf("\nWINDOW SCAN (the projection is found at an offset inside a block):\n");
     {
