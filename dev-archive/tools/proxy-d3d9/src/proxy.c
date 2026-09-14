@@ -35,10 +35,14 @@
  */
 
 #include <windows.h>
+#include <d3d9.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "camhunt.h"
 
 typedef void *(WINAPI *PFN_Direct3DCreate9)(UINT);
 
@@ -148,6 +152,93 @@ static void load_real_dll(void) {
 
 /* ------------------------------------------------------------- the export */
 
+/* ---------------------------------------------- reaching the device
+
+ * The instrument in camhunt.c hooks a method on IDirect3DDevice9, and the only
+ * way to get hold of that device is to watch it being created. So slot 16 of the
+ * IDirect3D9 we hand back is patched, the real CreateDevice is called, and the
+ * device it produces is handed to camhunt_install().
+ *
+ * The slot number is checked at compile time rather than trusted, the same way
+ * the device slot is. And the same ownership guard applies: if something else
+ * already hooked CreateDevice we stand down rather than chain into it —
+ * chaining into a foreign hook is what recursed CreateDevice 1669 times on the
+ * Alan Wake project and killed the launch.
+ */
+#define IDX_D3D9_CREATEDEVICE 16
+typedef char d3d9_createdevice_slot_check[
+    (offsetof(struct IDirect3D9Vtbl, CreateDevice)
+     == IDX_D3D9_CREATEDEVICE * sizeof(void *)) ? 1 : -1];
+
+typedef HRESULT (WINAPI *PFN_CreateDevice)(IDirect3D9 *, UINT, D3DDEVTYPE, HWND, DWORD,
+                                           D3DPRESENT_PARAMETERS *, IDirect3DDevice9 **);
+static PFN_CreateDevice g_real_createdevice;
+static void           **g_hooked_d3d9_vtable;
+
+static HRESULT WINAPI Hooked_CreateDevice(IDirect3D9 *This, UINT Adapter, D3DDEVTYPE DeviceType,
+                                          HWND hFocusWindow, DWORD BehaviorFlags,
+                                          D3DPRESENT_PARAMETERS *pp,
+                                          IDirect3DDevice9 **ppDevice) {
+    HRESULT hr = g_real_createdevice(This, Adapter, DeviceType, hFocusWindow,
+                                     BehaviorFlags, pp, ppDevice);
+    if (pp)
+        log_msg("CreateDevice: %ux%u, windowed=%d, behaviour flags 0x%08lX%s",
+                pp->BackBufferWidth, pp->BackBufferHeight, pp->Windowed, BehaviorFlags,
+                (BehaviorFlags & D3DCREATE_PUREDEVICE) ? "  (PUREDEVICE - Get* on shader "
+                                                         "constants will be refused)" : "");
+    if (SUCCEEDED(hr) && ppDevice && *ppDevice) {
+        log_msg("CreateDevice returned device %p - installing the camera instrument", (void *)*ppDevice);
+        camhunt_install(*ppDevice, g_real);
+    } else {
+        log_msg("CreateDevice FAILED (hr=0x%08lX) - no device, no instrument", (unsigned long)hr);
+    }
+    return hr;
+}
+
+static void hook_createdevice(void *d3d) {
+    DWORD oldProtect;
+    void **vtable;
+    HMODULE owner = NULL;
+    void *slot;
+
+    if (!d3d || g_hooked_d3d9_vtable) return;
+    vtable = *(void ***)d3d;
+    slot = vtable[IDX_D3D9_CREATEDEVICE];
+
+    if (!(slot && GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                                     GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                                     (LPCSTR)slot, &owner) && owner == g_real)) {
+        log_msg("REFUSING to hook IDirect3D9 slot %d: it holds %p, not owned by the real "
+                "d3d9.dll. Standing down - the game still runs, only the instrument is lost.",
+                IDX_D3D9_CREATEDEVICE, slot);
+        return;
+    }
+
+    g_real_createdevice = (PFN_CreateDevice)slot;
+    if (VirtualProtect(&vtable[IDX_D3D9_CREATEDEVICE], sizeof(void *),
+                       PAGE_EXECUTE_READWRITE, &oldProtect)) {
+        vtable[IDX_D3D9_CREATEDEVICE] = (void *)Hooked_CreateDevice;
+        VirtualProtect(&vtable[IDX_D3D9_CREATEDEVICE], sizeof(void *), oldProtect, &oldProtect);
+        g_hooked_d3d9_vtable = vtable;
+        log_msg("CreateDevice hooked at IDirect3D9 vtable slot %d (real=%p)",
+                IDX_D3D9_CREATEDEVICE, slot);
+    } else {
+        log_msg("FATAL: VirtualProtect failed hooking CreateDevice (err=%lu)", GetLastError());
+    }
+}
+
+static void unhook_createdevice(void) {
+    DWORD oldProtect;
+    void **vtable = g_hooked_d3d9_vtable;
+    if (!vtable || !g_real_createdevice) return;
+    g_hooked_d3d9_vtable = NULL;
+    if (VirtualProtect(&vtable[IDX_D3D9_CREATEDEVICE], sizeof(void *),
+                       PAGE_EXECUTE_READWRITE, &oldProtect)) {
+        vtable[IDX_D3D9_CREATEDEVICE] = (void *)g_real_createdevice;
+        VirtualProtect(&vtable[IDX_D3D9_CREATEDEVICE], sizeof(void *), oldProtect, &oldProtect);
+    }
+}
+
 void *WINAPI Proxy_Direct3DCreate9(UINT SDKVersion) {
     void *d3d;
     log_msg("Direct3DCreate9(SDKVersion=%u) called  <-- THE GAME REACHED D3D9 INIT", SDKVersion);
@@ -157,6 +248,7 @@ void *WINAPI Proxy_Direct3DCreate9(UINT SDKVersion) {
     }
     d3d = g_real_create(SDKVersion);
     log_msg("  forwarded; the real Direct3DCreate9 returned %p", d3d);
+    if (d3d) hook_createdevice(d3d);
     return d3d;
 }
 
@@ -181,6 +273,11 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, LPVOID reserved) {
 
         load_real_dll();
     } else if (reason == DLL_PROCESS_DETACH) {
+        /* Both vtables are shared per interface class and the pointers we wrote
+         * live inside this DLL, so they MUST come back out before we can be
+         * unloaded. Getting this wrong is a crash on exit. */
+        camhunt_remove();
+        unhook_createdevice();
         log_msg("=== detached ===");
     }
     return TRUE;

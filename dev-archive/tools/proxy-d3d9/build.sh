@@ -23,7 +23,7 @@ mkdir -p build
 # silently cannot work. Four projects have been found with this defect.
 "$CC" -shared -O2 -Wall -Wextra \
     -o build/d3d9.dll \
-    src/proxy.c src/thunks.c src/d3d9.def \
+    src/proxy.c src/thunks.c src/camhunt.c src/d3d9.def \
     -Wl,--no-insert-timestamp \
     -luser32 -lkernel32
 

@@ -43,6 +43,27 @@
 - One-frame walkthrough (record → replay → present):
 
 ## 6. Camera & projection delivery (the crucial section)
+
+⚠️ **STILL UNKNOWN — but the instrument that answers it is built and deployed** (2026-09-14, `/pd`,
+no launch). `dev-archive/tools/proxy-d3d9/src/camhunt.c`; notes:
+`modding-notes/2026-09-14-camera-instrument-built.md`.
+
+It hooks `IDirect3DDevice9::SetVertexShaderConstantF` (slot 94, compile-time asserted against the SDK
+header) via a `CreateDevice` hook (slot 16, likewise), and reports **read-only** which register
+receives a projection-shaped 4x4, in which packing, with a handedness reading. It is
+**register-agnostic** — every 4-register window of every upload is tested, in both row and column
+packings — and its "already seen" key is `(xs, ys)` rather than the register, so a shadow pass cannot
+mask the camera at the same register.
+
+Detector correctness: **11/11 against matrices built from the documented D3D formulae**
+`[verified-numerically 2026-09-14]` — positives LH/RH perspective and their transposes plus a square
+shadow-shaped frustum; negatives identity, orthographic and its transpose, a view matrix and its
+transpose, all-zeros. Build reproducible `[verified-numerically 2026-09-14, n=2]`.
+
+⚠️ **Whether this game's projection travels through `SetVertexShaderConstantF` at all is untested.**
+If the log counts uploads but finds nothing perspective-shaped, that is a real finding and the
+approach changes.
+
 - How the world transform reaches the GPU (shared VP buffer / per-draw MVP /
   other), with **shader-reflection / disassembly evidence**:
 - Exact constant-buffer slot, parameter name(s), byte offset(s), layout,
