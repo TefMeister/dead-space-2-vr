@@ -1,3 +1,19 @@
 LIBRARY d3d9
 EXPORTS
 Direct3DCreate9 = Proxy_Direct3DCreate9
+D3DPERF_BeginEvent = Thunk_0
+D3DPERF_EndEvent = Thunk_1
+D3DPERF_GetStatus = Thunk_2
+D3DPERF_QueryRepeatFrame = Thunk_3
+D3DPERF_SetMarker = Thunk_4
+D3DPERF_SetOptions = Thunk_5
+D3DPERF_SetRegion = Thunk_6
+DebugSetLevel = Thunk_7
+DebugSetMute = Thunk_8
+Direct3D9EnableMaximizedWindowedModeShim = Thunk_9
+Direct3DCreate9Ex = Thunk_10
+Direct3DCreate9On12 = Thunk_11
+Direct3DCreate9On12Ex = Thunk_12
+Direct3DShaderValidatorCreate9 = Thunk_13
+PSGPError = Thunk_14
+PSGPSampleTexture = Thunk_15
