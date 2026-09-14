@@ -57,8 +57,34 @@ void log_msg(const char *fmt, ...);     /* proxy.c */
  * infinite-far tweak.
  */
 int camhunt_classify(const float *p) {
-    float a11, a14;
+    float a11, a14, axs, ays;
     if (!p) return CAMHUNT_NONE;
+
+    /* ---- the diagonal gate, added 2026-09-14 after a FALSE POSITIVE in play.
+     * The first gameplay log matched a block at c18 that is plainly not a
+     * projection:
+     *     [ 0.005  0      -0.05   200 ]
+     *     [ 0      0     128        0 ]
+     *     [ 1      1       1        1 ]
+     *     [ 0      0       1        0 ]
+     * It passed the column-layout test because the w terms happened to line up.
+     * What gives it away is the diagonal: ys is ZERO, and a projection with a
+     * zero vertical scale would collapse the image to a line -- it cannot exist.
+     * Requiring both scale terms to be non-zero and within a sane range rejects
+     * it, and rejects the whole family of UI/HUD constant blocks it belongs to,
+     * without touching any real projection.
+     *
+     * ⚠️ The floor was 0.005f for about five minutes and the self-test rejected
+     * it: xs is cot(fovY/2) divided AGAIN by the aspect ratio, so a 179-degree
+     * field at 16:9 gives xs = 0.0049 and would have been thrown away. The
+     * comment here originally said "even a 179-degree field gives ~0.009",
+     * which was the ys figure and forgot the aspect divide. 0.001f leaves room
+     * for a field nobody would ever use while still rejecting the exact zero
+     * that the c18 block has. */
+    axs = p[0] < 0 ? -p[0] : p[0];
+    ays = p[5] < 0 ? -p[5] : p[5];
+    if (axs < 0.001f || axs > 1000.0f) return CAMHUNT_NONE;
+    if (ays < 0.001f || ays > 1000.0f) return CAMHUNT_NONE;
 
     a11 = p[11] < 0 ? -p[11] : p[11];
     a14 = p[14] < 0 ? -p[14] : p[14];

@@ -44,6 +44,62 @@
 
 ## 6. Camera & projection delivery (the crucial section)
 
+# 🏆 ANSWERED 2026-09-14 `[verified-live 2026-09-14, n=1 session, ~1.2M uploads]`
+
+Evidence: `dev-archive/recon/2026-09-14-camera-found/`; notes: `modding-notes/2026-09-14c-the-camera-is-found.md`.
+
+**The projection reaches the GPU as a dedicated 4-register vertex-shader constant write at `c4`.**
+
+```
+c4, layout R (register i = row i), written as "c4+4"
+    [ -1.944444    0.000000    0.000000    0.000000 ]
+    [  0.000000    3.456790    0.000000    0.000000 ]
+    [  0.000000    0.000000    0.990097    1.000000 ]
+    [  0.000000    0.000000   -0.099010    0.000000 ]
+```
+
+| Property | Value |
+| --- | --- |
+| Register / width | **c4**, 4 registers |
+| Packing | **layout R** (w-from-z at index 11) |
+| Handedness | **LEFT-handed**, `clip.w = +view.z` (`m[11] = +1`, all 24 sightings) |
+| Aspect | **exactly −1.7778 = −16/9**, matching the 1280×720 window |
+| X axis | **mirrored** (`xs` negative) |
+| Near plane | **0.1000** (`−m[14]/m[10]`) |
+| FOV at rest | **54.43° horizontal** |
+
+⭐ **It is a PURE PROJECTION, not a view-projection** — the upper-left 2×2 is exactly diagonal, with
+none of the rotation a combined matrix would carry. The view/world transform is elsewhere.
+
+⭐ **How c4 was distinguished from the other candidates: it is the one that ANIMATES.** A field-of-view
+sweep at 15:44:35–36 produced 21 consecutive announcements, **all at c4**, walking 60.00° → 70.00°
+horizontal in even steps while c0 and c18 stayed put. The round endpoints corroborate the reading.
+
+- `c0` is written far more often (36,987 per 5 s vs c4's 12,890) but announces **no** perspective during
+  gameplay — almost certainly the **per-object world/world-view matrix** `[hypothesis]`. Confirming it
+  is a `[PD]` job: log c0's contents for a few frames and see whether they change as the player turns.
+  If it holds, head tracking edits **c0** and per-eye stereo shears **c4** — two separable changes.
+- `c18` was a **false positive** (a UI block whose `ys` is zero); the detector now gates on both
+  diagonal scale terms and keeps that exact block as a regression test.
+
+⚠️ **The depth term is NOT the textbook form.** `m[10] = 0.990097` with `m[11] = +1`; a standard LH
+perspective has `m[10] = zf/(zf−zn) > 1`, and solving for `zf` here gives a negative number. What it
+actually does is `z_ndc = 0.990097 − 0.099010/z`, so near maps to 0 exactly and z→∞ approaches
+0.990097 — **depth never reaches 1.0.** The near plane is solid; the far behaviour is flagged, not
+explained. **Any stereo maths depending on the depth mapping must re-derive from this matrix rather
+than assume the standard form** `[hypothesis]`.
+
+⚠️ **The device is created PUREDEVICE** (`BehaviorFlags=0x54`), so D3D9 refuses `Get*` on shader
+constants. A read-back instrument cannot work here and must be designed differently.
+
+⚠️ **Nothing has been written.** The instrument is read-only; whether editing c4 actually moves the
+picture is untested, and the sibling project met an engine that re-uploaded its constants and ignored
+the edit.
+
+---
+
+### How it was found (the instrument)
+
 ⚠️ **STILL UNKNOWN — but the instrument that answers it is built and deployed** (2026-09-14, `/pd`,
 no launch). `dev-archive/tools/proxy-d3d9/src/camhunt.c`; notes:
 `modding-notes/2026-09-14-camera-instrument-built.md`.
