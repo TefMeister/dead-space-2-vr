@@ -1,0 +1,5 @@
+[14:08:31.985] === stage-1 proxy attached ===
+[14:08:31.986] host process: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\deadspace2.exe
+[14:08:31.986] log file: D:\Program Files (x86)\Steam\steamapps\common\Dead Space 2\ds2_proxy.log
+[14:08:31.986] PROXY LOADED — a foreign DLL was allowed into the process.
+[14:08:31.988] real d3d9 loaded from C:\Windows\system32\d3d9.dll (module 738D0000), Direct3DCreate9 = 73934B20
