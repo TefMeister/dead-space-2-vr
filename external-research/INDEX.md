@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-09-17 (estate sweep) — CHECK-IN.** First pass: folder bootstrapped; one topic on the game's official 3D Vision support and HeliX's shader-override fix as a stereo reference; pointer sent to `engine-research/inbox/`.
+**Last `/gr` pass: 2026-09-23 (estate sweep) — CHECK-IN.** Checked phunkaeg's *VR Modding Playbook*: no entry for this engine or game. Nothing new.
+
+_Previous: **Last `/gr` pass: 2026-09-17 (estate sweep) — CHECK-IN.** First pass: folder bootstrapped; one topic on the game's official 3D Vision support and HeliX's shader-override fix as a stereo reference; pointer sent to `engine-research/inbox/`._
 
 Every research topic gathered for this project, newest first. Each row links to a self-contained
 write-up in `topics/`. Status tags:
