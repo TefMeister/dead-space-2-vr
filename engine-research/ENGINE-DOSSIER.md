@@ -229,3 +229,10 @@ scale is unknown, so an IPD in millimetres cannot be set yet.
 - ~~The suspected packer may make static reading of the exe hard until it has unpacked itself in memory.~~ **Partly retired 2026-09-14:** strings and exports read fine off disk; only the import table is hidden until unpacking. Code disassembly of `.text` is still unattempted and may yet be the hard part.
 - ⭐ The camera vocabulary is unusually rich and is now written down (`CMD_BaseCamera`, `CMD_ResetCamera`, `CMD_AttachToActiveCamera`, `CMD_SetAttachFov`, `CMD_DriftCamera`, `CMD_DeathCamera`, `CMD_PuzzleCamera`, `CMD_Set180TurnCamera`, `CMD_SetAllowCameraSway`, `CMD_AIAC_SetVisionFOV`/`SetFiringFOV`). Naming the engine's own concepts is what makes a later disassembly readable.
 - ⭐ `EARS::Windows::CreateMainWindow(bool, WindowState, int, int, int, int)` is exported — **windowed mode is a parameter of a named exported function**, not a config-file guess.
+
+## Inbox folds, 2026-09-29
+
+**camhunt can mark the camera itself (from `prototype-vr`, 2026-09-14).** The Prototype port of `camhunt.c` computes the display aspect and marks any perspective signature whose `|ys/xs|` matches it; on a noisy engine that one test separated the camera from dozens of junk matches `[verified-live 2026-09-14, prototype-vr]`. Worth porting back here before the next camera hunt.
+
+**Prior art: official 3D Vision plus HeliX's fix (`/gr` 2026-09-17).** Dead Space 2 shipped official 3D Vision, and HeliX's `d3d9.dll` + ShaderOverride fix corrected shadows, lights and halos `[reported]`; the overridden shader hashes name the effects that break under a per-eye shift, and the game's own 3D Vision path may be an oracle for the stereo sign `[hypothesis]`. Consult before the per-eye c4 test. Topic: `external-research/topics/2026-09-17-official-3d-vision-and-helix-shader-override-fix.md`.
+
