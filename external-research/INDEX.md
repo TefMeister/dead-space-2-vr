@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-10-04 (estate sweep, second pass) — CHECK-IN.** PAUSED (another VR mod). Watch check: chortdev's Dead Space VR is Patreon-hosted; nothing public changed that this lane can see. Nothing new.
+**Last `/gr` pass: 2026-10-07 (estate sweep) — CHECK-IN.** PAUSED (another VR mod). Watch check: chortdev's Patreon could not be checked; nothing new found.
+
+_Previous: **Last `/gr` pass: 2026-10-04 (estate sweep, second pass) — CHECK-IN.** PAUSED (another VR mod). Watch check: chortdev's Dead Space VR is Patreon-hosted; nothing public changed that this lane can see. Nothing new._
 
 _Previous: **Last `/gr` pass: 2026-09-29 (estate sweep) — CHECK-IN.** Inbox empty. Watch check: chortdev's Dead Space VR shows no public update newer than its June 2026 post, still on Dead Space 1; no change._
 
