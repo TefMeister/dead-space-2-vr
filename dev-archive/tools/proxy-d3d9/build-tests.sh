@@ -14,7 +14,7 @@ cd "$(dirname "$0")"
 if command -v i686-w64-mingw32-clang >/dev/null 2>&1; then
     CC="i686-w64-mingw32-clang"
 else
-    CC="/c/Users/Tefa/AppData/Local/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/llvm-mingw-20260616-ucrt-x86_64/bin/i686-w64-mingw32-clang.exe"
+    CC="$(ls -d "$(cygpath -u "$LOCALAPPDATA")"/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_*/llvm-mingw-*-ucrt-x86_64/bin/i686-w64-mingw32-clang.exe 2>/dev/null | sort | tail -1)"
 fi
 
 mkdir -p build
