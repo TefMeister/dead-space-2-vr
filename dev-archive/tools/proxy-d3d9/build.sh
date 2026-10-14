@@ -10,7 +10,8 @@ cd "$(dirname "$0")"
 if command -v i686-w64-mingw32-clang >/dev/null 2>&1; then
     TOOLCHAIN="$(dirname "$(command -v i686-w64-mingw32-clang)")"
 else
-    TOOLCHAIN="/c/Users/Tefa/AppData/Local/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/llvm-mingw-20260616-ucrt-x86_64/bin"
+    # any installed llvm-mingw version, newest last
+    TOOLCHAIN="$(ls -d "$(cygpath -u "$LOCALAPPDATA")"/Microsoft/WinGet/Packages/MartinStorsjo.LLVM-MinGW.UCRT_*/llvm-mingw-*-ucrt-x86_64/bin 2>/dev/null | sort | tail -1)"
 fi
 CC="$TOOLCHAIN/i686-w64-mingw32-clang.exe"
 
