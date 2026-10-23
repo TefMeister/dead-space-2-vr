@@ -27,7 +27,7 @@ documentation was produced with **Claude (Anthropic)**
 
 If you, or someone whose work you know, contributed to, influenced, or even
 just inspired anything used in this project and you aren't credited here,
-please **open a GitHub issue on this repo** or email **(an issue on this repository)**,
+please **open a GitHub issue on this repo**,
 and we'll correct it as soon as possible. We would much rather over-credit
 than leave anyone out.
 
@@ -36,5 +36,5 @@ than leave anyone out.
 If you are the creator or rightful owner of anything credited or used here and
 you'd rather your work not be referenced in this repo, or you want specific
 content removed or no longer used by the mod, please tell us by opening a
-GitHub issue or by email. We'll act on that request promptly, and we'll find
+GitHub issue. We'll act on that request promptly, and we'll find
 another way to get the job done that doesn't rely on your material.
