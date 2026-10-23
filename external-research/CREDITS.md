@@ -1,8 +1,7 @@
 # Credits — public research for dead-space-2-vr
 
 Every source this research lane has drawn on, credited by name. If you should be credited here and
-are not, or you are a rights holder who wants something corrected or removed, email
-**td3kxlvr@proton.me** and it will be fixed promptly.
+are not, or you are a rights holder who wants something corrected or removed, open an issue on this repository and it will be fixed promptly.
 
 ## The game
 
