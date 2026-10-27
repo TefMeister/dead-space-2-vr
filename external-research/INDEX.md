@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-10-23 (estate sweep) — CHECK-IN.** Inbox empty. Re-checked the other VR mod on WATCHING.md: no public news of chortdev's Dead Space VR found by search (Patreon not readable here, so this is not a negative). Nothing new.
+**Last `/gr` pass: 2026-10-27 (estate sweep) — CHECK-IN.** Inbox empty. Watch check: chortdev's Dead Space VR: nothing public to check without Patreon (not a negative); no search spent. Nothing new.
+
+_Previous: Last `/gr` pass: 2026-10-23 (estate sweep) — CHECK-IN. Inbox empty. Re-checked the other VR mod on WATCHING.md: no public news of chortdev's Dead Space VR found by search (Patreon not readable here, so this is not a negative). Nothing new._
 
 _Previous: **Last `/gr` pass: 2026-10-11 (estate sweep) — CHECK-IN.** Inbox empty. Re-checked the other VR mod on WATCHING.md: no change since the row was last updated. Nothing new._
 
