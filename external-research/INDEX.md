@@ -1,6 +1,8 @@
 # Research index
 
-**Last `/gr` pass: 2026-11-07 (estate sweep) — CHECK-IN.** Inbox empty; watch check: chortdev's Dead Space VR still has nothing public outside Patreon, and one search found no Dead Space 2 VR mod. Nothing new.
+**Last `/gr` pass: 2026-11-14 (check-ins beside the Keeper's sweep of the same day) — CHECK-IN.** Inbox empty; watch check: Talemann's free mod is still Dead Space 1 only; nothing public about Dead Space 2 (chortdev's Patreon not re-checked). Nothing new.
+
+_Previous: **Last `/gr` pass: 2026-11-07 (estate sweep) — CHECK-IN.** Inbox empty; watch check: chortdev's Dead Space VR still has nothing public outside Patreon, and one search found no Dead Space 2 VR mod. Nothing new._
 
 _Previous: **Last `/gr` pass: 2026-10-27 (estate sweep) — CHECK-IN.** Inbox empty. Watch check: chortdev's Dead Space VR: nothing public to check without Patreon (not a negative); no search spent. Nothing new._
 
